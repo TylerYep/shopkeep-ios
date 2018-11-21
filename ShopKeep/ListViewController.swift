@@ -11,6 +11,7 @@ import UIKit
 class ListViewController: UIViewController {
     
     @IBOutlet weak var itemView: UIView!
+    @IBOutlet weak var mapButton: UIButton!
     
     override func viewDidLoad() {
         // border
@@ -22,6 +23,7 @@ class ListViewController: UIViewController {
         itemView.layer.shadowOffset = CGSize(width: 3, height: 3)
         itemView.layer.shadowOpacity = 0.7
         itemView.layer.shadowRadius = 4.0
+        
     }
     
 }

@@ -96,7 +96,7 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="azj-tf-Qy1">
-                                <rect key="frame" x="16" y="88" width="343" height="365"/>
+                                <rect key="frame" x="16" y="88" width="343" height="491"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.98039215686274506" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -108,12 +108,22 @@
                                 <rect key="frame" x="329" y="26" width="30" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Cm-o7-tTm">
+                                <rect key="frame" x="93" y="601" width="189" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.73725490199999999" green="0.14901960780000001" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="Generate Map">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="wwk-Is-OLr"/>
                     </view>
                     <connections>
                         <outlet property="itemView" destination="azj-tf-Qy1" id="Vq7-ZH-XbT"/>
+                        <outlet property="mapButton" destination="4Cm-o7-tTm" id="0YX-ym-GL7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kai-Ol-09Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
