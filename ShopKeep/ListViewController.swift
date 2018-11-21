@@ -12,6 +12,8 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var itemView: UIView!
     @IBOutlet weak var mapButton: UIButton!
+    @IBOutlet weak var penButton: UIButton!
+    @IBOutlet weak var micButton: UIButton!
     
     override func viewDidLoad() {
         // border
@@ -24,6 +26,8 @@ class ListViewController: UIViewController {
         itemView.layer.shadowOpacity = 0.7
         itemView.layer.shadowRadius = 4.0
         
+        penButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
+        micButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
     }
     
 }
