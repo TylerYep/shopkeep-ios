@@ -114,6 +114,21 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.98039215690000003" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemCell" id="keI-17-4MZ">
+                                                <rect key="frame" x="0.0" y="28" width="327" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="keI-17-4MZ" id="Ktr-kH-86b">
+                                                    <rect key="frame" x="0.0" y="0.0" width="327" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" red="1" green="0.98039215690000003" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="y94-l6-EEg" id="SNB-6m-Gwu"/>
+                                            <outlet property="delegate" destination="y94-l6-EEg" id="Xeh-aL-lYC"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.98039215686274506" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
