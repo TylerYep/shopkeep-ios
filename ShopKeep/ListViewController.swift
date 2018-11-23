@@ -52,6 +52,7 @@ class ListViewController: UIViewController,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -91,7 +92,8 @@ class ListViewController: UIViewController,
                 var lastString: String = ""
                 for segment in result.bestTranscription.segments {
                     let indexTo = bestString.index(bestString.startIndex, offsetBy: segment.substringRange.location)
-                    lastString = bestString.substring(from: indexTo)
+                    // lastString = bestString.substring(from: indexTo)
+                    lastString = String(bestString[indexTo...])
                 }
                 print("DEBUG: " + lastString)
             } else if let error = error {
