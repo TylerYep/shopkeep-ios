@@ -36,12 +36,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // TODO
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 9
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
-        cell.textLabel?.text = "TEST" // TODO
+        
         return cell
     }
     
