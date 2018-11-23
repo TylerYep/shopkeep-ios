@@ -103,6 +103,9 @@
                                         <rect key="frame" x="287" y="435" width="48" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button" image="noun_mic_1702508"/>
+                                        <connections>
+                                            <action selector="micButtonPressed:" destination="y94-l6-EEg" eventType="touchUpInside" id="zTp-Zm-9cV"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hub-6E-TFw">
                                         <rect key="frame" x="8" y="435" width="48" height="48"/>

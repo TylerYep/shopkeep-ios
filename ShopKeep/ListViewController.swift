@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import Speech
 
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListViewController: UIViewController,
+                          UITableViewDelegate, UITableViewDataSource,
+                          SFSpeechRecognizerDelegate {
     
     @IBOutlet weak var itemView: UIView!
     @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var penButton: UIButton!
     @IBOutlet weak var micButton: UIButton!
     
+    let audioEngine = AVAudioEngine()
+    let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
+    let request = SFSpeechAudioBufferRecognitionRequest()
+    var recognitionTask: SFSpeechRecognitionTask?
+    
     override func viewDidLoad() {
+        
+        self.requestSpeechAuthorization()
+        
         // border
         itemView.layer.borderWidth = 1.0
         itemView.layer.borderColor = UIColor.black.cgColor
@@ -41,8 +52,69 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
-        
         return cell
     }
     
+    @IBAction func micButtonPressed(_ sender: Any) {
+        print("button pressed")
+        self.recordAndRecognizeSpeech()
+    }
+    
+    func recordAndRecognizeSpeech() {
+        let node = audioEngine.inputNode
+        let recordingFormat = node.outputFormat(forBus: 0)
+        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {buffer, _ in
+            self.request.append(buffer)
+        }
+        audioEngine.prepare()
+        do {
+            try audioEngine.start()
+        } catch {
+            print("There has been an audio engine error.")
+            return
+        }
+//        guard let recognizer = SFSpeechRecognizer() else {
+//            print("Speech recognition is not supported for your current locale.")
+//            return
+//        }
+//        if !(recognizer?.isAvailable)! {
+//            print("Speech recognition is not currently available. Check back at a later time.")
+//            // Recognizer is not available right now
+//            return
+//        }
+        recognitionTask = recognizer?.recognitionTask(with: request, resultHandler: { result, error in
+            if let result = result {
+                
+                let bestString = result.bestTranscription.formattedString
+                print("DEBUG: " + bestString)
+                
+                var lastString: String = ""
+                for segment in result.bestTranscription.segments {
+                    let indexTo = bestString.index(bestString.startIndex, offsetBy: segment.substringRange.location)
+                    lastString = bestString.substring(from: indexTo)
+                }
+                print("DEBUG: " + lastString)
+            } else if let error = error {
+                print("There has been a speech recognition error.")
+                print(error)
+            }
+        })
+    }
+    
+    func requestSpeechAuthorization() {
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            OperationQueue.main.addOperation {
+                switch authStatus {
+                case .authorized:
+                    print("Speech authorized")
+                case .denied:
+                    print("User denied access to speech recognition")
+                case .restricted:
+                    print("Speech recognition restricted on this device")
+                case .notDetermined:
+                    print("Speech recognition not yet authorized")
+                }
+            }
+        }
+    }
 }
