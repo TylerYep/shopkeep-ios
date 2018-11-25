@@ -44,6 +44,12 @@ class MapViewController: UIViewController {
 
         indexUpdated()
 
+        let eggsImage = UIImage(named: "eggsBackground")
+        let eggBrand1 = Brand(name: "EggsRUs", price: "$3.94/dz", discount: "Buy 1 Get 1")
+        let eggBrand2 = Brand(name: "Luceme Organic", price: "$5.94/dz", discount: nil)
+        let eggBrands = [eggBrand1, eggBrand2]
+        let eggs = Item(name: "Eggs", brands: eggBrands, image: eggsImage!)
+
         // Do any additional setup after loading the view.
     }
 
@@ -51,7 +57,19 @@ class MapViewController: UIViewController {
     {
         switch sender.tag
         {
-        case 1: print("Eggs")     //when Button1 is clicked...
+        case 1: print("Eggs")
+        let eggsImage = UIImage(named: "eggsBackground")
+        let eggBrand1 = Brand(name: "EggsRUs", price: "$3.94/dz", discount: "Buy 1 Get 1")
+        let eggBrand2 = Brand(name: "Luceme Organic", price: "$5.94/dz", discount: nil)
+        let eggBrands = [eggBrand1, eggBrand2]
+        let eggs = Item(name: "Eggs", brands: eggBrands, image: eggsImage!)
+
+        let eggsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+        eggsVC.type = eggs
+        self.show(eggsVC, sender: self)
+
+
+        //when Button1 is clicked...
             break
         case 2: print("Cheese")     //when Button2 is clicked...
             break
