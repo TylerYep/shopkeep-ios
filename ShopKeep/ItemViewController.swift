@@ -12,6 +12,8 @@ import UIKit
 class ItemViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
 
+    @IBOutlet weak var backBtn: UIBarButtonItem!
+    @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
 
     var type: Item?
@@ -20,9 +22,14 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+
+        navBar.title = type?.name
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func backBtnTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return type!.brands.count + 2
