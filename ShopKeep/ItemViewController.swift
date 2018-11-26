@@ -41,9 +41,9 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch (indexPath.row)
         {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell")
-            cell?.imageView?.image = item.image
-            return cell!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell") as! ImageTableViewCell
+            cell.cellImage.image = item.image
+            return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell")
             return cell!
