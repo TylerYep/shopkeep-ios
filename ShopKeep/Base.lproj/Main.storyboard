@@ -275,10 +275,18 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVb-3C-2yA">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVb-3C-2yA">
                                 <rect key="frame" x="304" y="434" width="34" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="5x4-BB-Ymc"/>
+                                    <constraint firstAttribute="height" constant="44" id="tAF-Cb-eTk"/>
+                                </constraints>
                                 <state key="normal" image="eggsIcon"/>
+                            </button>
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X58-CL-LR7">
+                                <rect key="frame" x="286" y="73" width="34" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="carrotIcon"/>
                             </button>
                             <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8U7-We-sV9">
                                 <rect key="frame" x="62" y="227" width="34" height="42"/>
@@ -335,20 +343,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="pizzaIcon"/>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7u-le-GJo">
-                                <rect key="frame" x="304" y="179" width="34" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="cheeseIcon"/>
-                            </button>
                             <button opaque="NO" tag="15" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpe-F5-Usd">
                                 <rect key="frame" x="341" y="234" width="34" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="cornIcon"/>
                             </button>
-                            <button opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X58-CL-LR7">
-                                <rect key="frame" x="286" y="73" width="34" height="42"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lyu-ck-WRw">
+                                <rect key="frame" x="304" y="191" width="34" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="carrotIcon"/>
+                                <state key="normal" image="cheeseIcon"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -375,7 +378,7 @@
                         <outlet property="brocolliBtn" destination="iYd-TL-h2z" id="WWk-de-Z1i"/>
                         <outlet property="burgerBtn" destination="Jwq-W4-jjE" id="NgK-9s-xuQ"/>
                         <outlet property="carrotBtn" destination="X58-CL-LR7" id="b85-hx-gtY"/>
-                        <outlet property="cheeseBtn" destination="X58-CL-LR7" id="JKg-Xb-0N8"/>
+                        <outlet property="cheeseBtn" destination="Lyu-ck-WRw" id="tDk-Ib-dUN"/>
                         <outlet property="chickenBtn" destination="3Ce-ZR-vix" id="ME3-hf-Qrr"/>
                         <outlet property="cornBtn" destination="Hpe-F5-Usd" id="UV6-vq-Rfx"/>
                         <outlet property="currItemLabel" destination="m5w-BQ-YZD" id="96q-mW-FOH"/>

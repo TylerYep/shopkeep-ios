@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var pastaBtn: UIButton!       //tag 10
     @IBOutlet weak var fishBtn: UIButton!        //tag 11
     @IBOutlet weak var iceCreamBtn: UIButton!    //tag 12
-    @IBOutlet weak var steakBtn: UIButton!
+    @IBOutlet weak var steakBtn: UIButton!       //tag 13
     @IBOutlet weak var brocolliBtn: UIButton!    //tag 14
     @IBOutlet weak var cornBtn: UIButton!        //tag 15
 
@@ -96,9 +96,9 @@ class MapViewController: UIViewController {
             let cheeseBrands = [cheeseBrand1, cheeseBrand2]
             let cheese = Item(name: "Cheese", brands: cheeseBrands, image: cheeseImage!)
 
-            let cheeseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            cheeseVC.type = cheese
-            self.show(cheeseVC, sender: self)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = cheese
+            self.show(itemVC, sender: self)
 
         //when Button2 is clicked...
             break
@@ -208,14 +208,41 @@ class MapViewController: UIViewController {
             let iceCream4 = Brand(name: "Halo Top Chocolate", price: "$4.55/pint", discount: nil)
             let iceCream5 = Brand(name: "Ben n Jerry's Phish Food", price: "$3.94/pint", discount: nil)
             let iceCreamBrands = [iceCream1, iceCream2, iceCream3, iceCream4, iceCream5]
-            let iceCream = Item(name: "Pasta", brands:  iceCreamBrands, image: iceCreamImage!)
+            let iceCream = Item(name: "Ice  Cream", brands:  iceCreamBrands, image: iceCreamImage!)
             let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
             itemVC.type = iceCream
             self.show(itemVC, sender: self)
-        case 13: print("steak")
-        case 14: print("brocolli")
-        case 15: print("corn")
 
+        case 13: print("steak")
+            let steakImage = UIImage(named: "lemonsBackground")
+            let steak1 = Brand(name: "CVS Rib-Eye", price: "$7.93/lb", discount: nil)
+            let steak2 = Brand(name: "CVS NY Strip", price: "$9.93/lb", discount: nil)
+            let steak3 = Brand(name: "CVS Filet Mignon", price: "$11.25/lb", discount: nil)
+
+            let steakBrands = [steak1, steak2, steak3]
+            let steak = Item(name: "Steak", brands:  steakBrands, image: steakImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = steak
+            self.show(itemVC, sender: self)
+
+        case 14: print("brocolli")
+            let brocolliImage = UIImage(named: "lemonsBackground")
+            let broccoli1 = Brand(name: "CVS Brocolli", price: "$5.44/lb", discount: nil)
+            let brocolliBrands = [broccoli1]
+            let brocolli = Item(name: "Broccoli", brands:  brocolliBrands, image: brocolliImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = brocolli
+            self.show(itemVC, sender: self)
+        case 15: print("corn")
+            let cornImage = UIImage(named: "lemonsBackground")
+            let corn1 = Brand(name: "CVS Corn on the Cob", price: "$3.44/lb", discount: nil)
+            let corn2 = Brand(name: "CVS Street Corn", price: "$5.44/lb", discount: nil)
+
+            let cornBrands = [corn1, corn2]
+            let corn = Item(name: "Corn", brands:  cornBrands, image: cornImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = corn
+            self.show(itemVC, sender: self)
         default: print("Other...")
         }
     }
