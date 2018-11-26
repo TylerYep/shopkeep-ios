@@ -146,12 +146,72 @@ class MapViewController: UIViewController {
             break
 
         case 6: print("Lemons")
+            let lemonImage = UIImage(named: "lemonsBackground")
+            let lemons1 = Brand(name: "CVS Lemons", price: "$1.00/unit", discount: nil)
+            let lemonBrands = [lemons1]
+            let lemons = Item(name: "Lemons", brands:  lemonBrands, image: lemonImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = lemons
+            self.show(itemVC, sender: self)
+
         case 7: print("carrots")
+            let carrotImage = UIImage(named: "lemonsBackground")
+            let carrots1 = Brand(name: "CVS Carrots", price: "$1.20/lb", discount: nil)
+            let carrotBrands = [carrots1]
+            let carrots = Item(name: "Carrots", brands:  carrotBrands, image: carrotImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = carrots
+            self.show(itemVC, sender: self)
+
         case 8: print("burgers")
+            let burgerImage = UIImage(named: "lemonsBackground")
+            let burger1 = Brand(name: "CVS Beef Patties", price: "$12.93/20-pack", discount: nil)
+            let burgerBrands = [burger1]
+            let burger = Item(name: "Burger Patties", brands:  burgerBrands, image: burgerImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = burger
+            self.show(itemVC, sender: self)
+
         case 9: print("quesadillas")
+            let quesadillaImage = UIImage(named: "lemonsBackground")
+            let quesadilla1 = Brand(name: "CVS Frozen Quesadillas", price: "$18.93/40-pack", discount: "Buy 1 Get 1 50% Off")
+            let quesadillaBrands = [quesadilla1]
+            let quesadilla = Item(name: "Quesadillas", brands:  quesadillaBrands, image: quesadillaImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = quesadilla
+            self.show(itemVC, sender: self)
+
         case 10: print("pasta")
+            let pastaImage = UIImage(named: "lemonsBackground")
+            let pasta1 = Brand(name: "Kraft Mac n' Cheese", price: "$13.93/6-pack", discount: "Buy 2 Get 1 Free")
+            let pastaBrands = [pasta1]
+            let pasta = Item(name: "Pasta", brands:  pastaBrands, image: pastaImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = pasta
+            self.show(itemVC, sender: self)
+
         case 11: print("fish")
+            let fishImage = UIImage(named: "lemonsBackground")
+            let fish1 = Brand(name: "CVS Alaskan Salmon", price: "$7.93/lb", discount: nil)
+            let fishBrands = [fish1]
+            let fish = Item(name: "Fish", brands:  fishBrands, image: fishImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = fish
+            self.show(itemVC, sender: self)
+
         case 12: print("ice cream")
+
+            let iceCreamImage = UIImage(named: "lemonsBackground")
+            let iceCream1 = Brand(name: "Halo Top Vanilla", price: "$4.55/pint", discount: nil)
+            let iceCream2 = Brand(name: "Halo Top Mint Chip", price: "$4.55/pint", discount: nil)
+            let iceCream3 = Brand(name: "Halo Top Cookie Dough", price: "$4.55/pint", discount: nil)
+            let iceCream4 = Brand(name: "Halo Top Chocolate", price: "$4.55/pint", discount: nil)
+            let iceCream5 = Brand(name: "Ben n Jerry's Phish Food", price: "$3.94/pint", discount: nil)
+            let iceCreamBrands = [iceCream1, iceCream2, iceCream3, iceCream4, iceCream5]
+            let iceCream = Item(name: "Pasta", brands:  iceCreamBrands, image: iceCreamImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = iceCream
+            self.show(itemVC, sender: self)
         case 13: print("steak")
         case 14: print("brocolli")
         case 15: print("corn")
