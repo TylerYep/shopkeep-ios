@@ -8,8 +8,11 @@
 
 import UIKit
 
+var customRed = UIColor.init(red: 196/255, green: 21/255, blue: 23/255, alpha: 100)
 class MapViewController: UIViewController {
 
+    @IBOutlet weak var dashView: UIView!
+    @IBOutlet weak var pathView: GridView!
     @IBOutlet weak var mapView: UIImageView!
     @IBOutlet weak var helpBtn: UIImageView!
     @IBOutlet weak var endTripBtn: UIButton!
@@ -45,15 +48,17 @@ class MapViewController: UIViewController {
     var currIndex = 0
     var list = [String]()
     var btnArray = [UIButton]()
+    var mainLayer = CALayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         map = UIImage(named: "base_cvs_map")
-
         list = ["Eggs", "Corn", "Cheese", "Brocolli", "Lemons", "Carrots", "Pizza", "Burgers", "Quesadillas", "Ice Cream", "Chicken", "Fish", "Steak", "Pasta", "Bread"]
         btnArray = [eggsBtn, cornBtn, cheeseBtn, brocolliBtn, lemonBtn, carrotBtn, pizzaBtn, burgerBtn, quesadillaBtn, iceCreamBtn, chickenBtn, fishBtn, steakBtn, pastaBtn, breadBtn]
         items = list
         items.append("All items done!")
+
+        pathView.backgroundColor = UIColor.clear
 
         currItemLabel.text = "Eggs"
         eggsBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
@@ -75,6 +80,9 @@ class MapViewController: UIViewController {
         indexUpdated()
 
         navItem.title = ""
+
+        //drawDottedLine(start: CGPoint(x: 10, y: 10), end: CGPoint(x: 100, y: 100), view: dashView)
+
 
 
         // Do any additional setup after loading the view.
@@ -237,7 +245,7 @@ class MapViewController: UIViewController {
             self.show(itemVC, sender: self)
 
         case 14: print("brocolli")
-            let brocolliImage = UIImage(named: "brocolliBackground")
+            let brocolliImage = UIImage(named: "broccoliBackground")
             let broccoli1 = Brand(name: "CVS Brocolli", price: "$5.44/lb", discount: nil)
             let brocolliBrands = [broccoli1]
             let brocolli = Item(name: "Broccoli", brands:  brocolliBrands, image: brocolliImage!)
@@ -350,83 +358,121 @@ class MapViewController: UIViewController {
         for btn in btnArray {
             if btn != selected {
                 btn.frame.size = normalSize
+                btn.layer.shadowOpacity = 0.0
             }
         }
         if let currBtn = selected {
             currBtn.frame.size = bigSize
+            currBtn.layer.shadowColor = UIColor.lightGray.cgColor
+            currBtn.layer.shadowOffset = CGSize(width: 0, height: 1)
+            currBtn.layer.shadowOpacity = 1.0
+            currBtn.layer.shadowRadius = 1
         }
     }
 
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
-        let size = image.size
+    func drawDottedLine(start p0: CGPoint, end p1: CGPoint, view: UIView) {
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.strokeColor = UIColor.lightGray.cgColor
+        shapeLayer.lineWidth = 1
+        shapeLayer.lineDashPattern = [7, 3] // 7 is the length of dash, 3 is length of the gap.
 
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-
-        // Figure out what our orientation is, and use that to form the rectangle
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
-        }
-
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
-
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-
-        return newImage!
+        let path = CGMutablePath()
+        path.addLines(between: [p0, p1])
+        shapeLayer.path = path
+        view.layer.addSublayer(shapeLayer)
     }
 
+}
 
-    func DrawOnImage(startingImage: UIImage) -> UIImage {
+class GridView: UIView
+{
+    private var path = UIBezierPath()
 
-        // Create a context of the starting image size and set it as the current one
-        UIGraphicsBeginImageContext(startingImage.size)
+    fileprivate func drawGrid()
+    {
+        path = UIBezierPath()
+        path.lineWidth = 5.0
+        let blackColor = UIColor.black
+        blackColor.setStroke()
+        path.stroke()
 
-        // Draw the starting image in the current context as background
-        startingImage.draw(at: CGPoint.zero)
+        //All the way up right-most aisle
+        let start1 = CGPoint(x: bounds.width - 35, y:bounds.height - 25)
+        let end1 = CGPoint(x: bounds.width - 35, y: 25)
+        path.move(to: start1)
+        path.addLine(to: end1)
 
-        // Get the current context
-        let context = UIGraphicsGetCurrentContext()!
+        //To Pizza
+        let start2 = CGPoint(x: bounds.width - 35, y: 25)
+        let end2 = CGPoint(x: bounds.width - 182.5, y: 25)
+        path.move(to: start2)
+        path.addLine(to: end2)
 
-        // Draw a red line
-        context.setLineWidth(2.0)
-        context.setStrokeColor(UIColor.red.cgColor)
-        context.move(to: CGPoint(x: 100, y: 100))
-        context.addLine(to: CGPoint(x: 200, y: 200))
-        context.strokePath()
+        //To burgers & quesadillas (ends at bottom of aisle 13/14)
+        let start3 = CGPoint(x: bounds.width - 180, y: 25)
+        let end3 = CGPoint(x: bounds.width - 180, y: bounds.height/2 - 35)
+        path.move(to: start3)
+        path.addLine(to: end3)
 
-        // Draw a transparent green Circle
-        context.setStrokeColor(UIColor.green.cgColor)
-        context.setAlpha(0.5)
-        context.setLineWidth(10.0)
-        context.addEllipse(in: CGRect(x: 100, y: 100, width: 100, height: 100))
-        context.drawPath(using: .stroke) // or .fillStroke if need filling
+        //To ice cream
+        let start4 = CGPoint(x: bounds.width - 180, y: bounds.height/2 - 35)
+        let end4 = CGPoint(x: bounds.width - 180, y: bounds.height/2 + 70)
+        path.move(to: start4)
+        path.addLine(to: end4)
 
-        // Save the context as a new UIImage
-        let myImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        //across aisle 12-13
+        let start5 = CGPoint(x: bounds.width - 180, y: bounds.height/2 - 35)
+        let end5 = CGPoint(x: bounds.width - 255, y: bounds.height/2 - 35)
+        path.move(to: start5)
+        path.addLine(to: end5)
 
-        // Return modified image
-        return myImage!
+        //to chicken (from end5)
+        let start6a = CGPoint(x: bounds.width - 255, y: bounds.height/2 - 37.5)
+        let end6a = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 20)
+        path.move(to: start6a)
+        path.addLine(to: end6a)
+
+        //to fish (from chicken)
+        let start6b = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 20)
+        let end6b = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 70)
+        path.move(to: start6b)
+        path.addLine(to: end6b)
+
+        //to steak (from fish)
+        let start6c = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 70)
+        let end6c = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 138)
+        path.move(to: start6c)
+        path.addLine(to: end6c)
+
+        //To pasta (across aisle 10-11)
+        let start7 = CGPoint(x: bounds.width - 255, y: bounds.height/2 - 35)
+        let end7 = CGPoint(x: bounds.width - 300, y: bounds.height/2 - 35)
+        path.move(to: start7)
+        path.addLine(to: end7)
+
+        //To bread (from pasta)
+        let start8a = CGPoint(x: bounds.width - 300, y: bounds.height/2 - 35)
+        let end8a = CGPoint(x: bounds.width - 335, y: bounds.height/2 - 35)
+        path.move(to: start8a)
+        path.addLine(to: end8a)
+        let start8b = CGPoint(x: bounds.width - 335, y: bounds.height/2 - 37.5)
+        let end8b = CGPoint(x: bounds.width - 335, y: bounds.height/2 + 110)
+        path.move(to: start8b)
+        path.addLine(to: end8b)
+
+
+        //Close the path.
+        path.close()
+
     }
 
-    
+    override func draw(_ rect: CGRect)
+    {
+        drawGrid()
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        // Specify a border (stroke) color.
+        customRed.setStroke()
+        path.stroke()
+        
     }
-    */
-
 }
