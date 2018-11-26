@@ -279,10 +279,17 @@ class MapViewController: UIViewController {
         if currIndex == 0 {
             prevItemBtn.isEnabled = false
             prevItemBtn.tintColor = UIColor.lightGray
+        } else {
+            prevItemBtn.isEnabled = true
+            prevItemBtn.tintColor = UIColor.darkGray
         }
+
         if currIndex == items.count - 1 {
             nextItemBtn.isEnabled = false
             nextItemBtn.tintColor = UIColor.lightGray
+        } else {
+            nextItemBtn.isEnabled = true
+            nextItemBtn.tintColor = UIColor.darkGray
         }
 
         switch (currItem) {
