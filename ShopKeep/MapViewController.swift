@@ -61,22 +61,9 @@ class MapViewController: UIViewController {
         pathView.backgroundColor = UIColor.clear
 
         currItemLabel.text = "Eggs"
-        eggsBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        cheeseBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        pizzaBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        chickenBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        breadBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        lemonBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        carrotBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        burgerBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        quesadillaBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        pastaBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        fishBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        iceCreamBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        steakBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        brocolliBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        cornBtn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-
+        for btn in btnArray {
+            btn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
+        }
         indexUpdated()
 
         navItem.title = ""
