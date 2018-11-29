@@ -18,9 +18,10 @@ class ListViewController: UIViewController,
     @IBOutlet weak var penButton: UIButton!
     @IBOutlet weak var micButton: UIButton!
     @IBOutlet weak var itemTableView: UITableView!
+    @IBOutlet weak var debugLabel: UILabel!
     
     let audioEngine = AVAudioEngine()
-    let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
+    // let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
     let request = SFSpeechAudioBufferRecognitionRequest()
     var recognitionTask: SFSpeechRecognitionTask?
     
@@ -80,16 +81,16 @@ class ListViewController: UIViewController,
             print("There has been an audio engine error.")
             return
         }
-//        guard let recognizer = SFSpeechRecognizer() else {
-//            print("Speech recognition is not supported for your current locale.")
-//            return
-//        }
-//        if !(recognizer?.isAvailable)! {
-//            print("Speech recognition is not currently available. Check back at a later time.")
-//            // Recognizer is not available right now
-//            return
-//        }
-        recognitionTask = recognizer?.recognitionTask(with: request, resultHandler: { result, error in
+        guard let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US")) else {
+            print("Speech recognition is not supported for your current locale.")
+            return
+        }
+        if !(recognizer.isAvailable) {
+            print("Speech recognition is not currently available. Check back at a later time.")
+            // Recognizer is not available right now
+            return
+        }
+        recognitionTask = recognizer.recognitionTask(with: request, resultHandler: { result, error in
             if let result = result {
                 
                 let bestString = result.bestTranscription.formattedString
@@ -102,6 +103,7 @@ class ListViewController: UIViewController,
                     lastString = String(bestString[indexTo...])
                 }
                 print("DEBUG: " + lastString)
+                self.debugLabel.text = lastString
             } else if let error = error {
                 print("There has been a speech recognition error.")
                 print(error)

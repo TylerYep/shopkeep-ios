@@ -149,6 +149,13 @@
                                             <outlet property="delegate" destination="y94-l6-EEg" id="Xeh-aL-lYC"/>
                                         </connections>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9DA-fB-zB0">
+                                        <rect key="frame" x="150" y="449" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.98039215686274506" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -177,6 +184,7 @@
                         <viewLayoutGuide key="safeArea" id="wwk-Is-OLr"/>
                     </view>
                     <connections>
+                        <outlet property="debugLabel" destination="9DA-fB-zB0" id="hdj-SG-aa8"/>
                         <outlet property="itemTableView" destination="fjo-rF-MMR" id="LsX-Nq-whH"/>
                         <outlet property="itemView" destination="azj-tf-Qy1" id="Vq7-ZH-XbT"/>
                         <outlet property="mapButton" destination="4Cm-o7-tTm" id="0YX-ym-GL7"/>

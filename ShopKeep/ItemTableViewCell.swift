@@ -18,6 +18,8 @@ public class ItemTableViewCell: UITableViewCell {
         
         itemTextField.accessibilityValue = text
         itemTextField.accessibilityLabel = placeholder
+        
+        itemTextField.returnKeyType = .done
     }
     
 }
