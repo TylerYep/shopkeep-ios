@@ -15,6 +15,7 @@
 		82A20BC621A07E99009CB074 /* ShopKeepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A20BC521A07E99009CB074 /* ShopKeepTests.swift */; };
 		82A20BD121A07E99009CB074 /* ShopKeepUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A20BD021A07E99009CB074 /* ShopKeepUITests.swift */; };
 		82F1875621B03ABC00235A4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F1875521B03ABC00235A4A /* ViewController.swift */; };
+		82F1875821B03CF900235A4A /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F1875721B03CF900235A4A /* ItemTableViewCell.swift */; };
 		8A68F4C321A8E29A00A69B77 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A68F4C221A8E29A00A69B77 /* MapViewController.swift */; };
 		8A68F4C521A8E9DE00A69B77 /* EggsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A68F4C421A8E9DE00A69B77 /* EggsViewController.swift */; };
 		8A68F4C721AB5DB700A69B77 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A68F4C621AB5DB700A69B77 /* ItemViewController.swift */; };
@@ -55,6 +56,7 @@
 		82A20BD021A07E99009CB074 /* ShopKeepUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopKeepUITests.swift; sourceTree = "<group>"; };
 		82A20BD221A07E99009CB074 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82F1875521B03ABC00235A4A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		82F1875721B03CF900235A4A /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		8A68F4C221A8E29A00A69B77 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8A68F4C421A8E9DE00A69B77 /* EggsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggsViewController.swift; sourceTree = "<group>"; };
 		8A68F4C621AB5DB700A69B77 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				8ACCD4F621ABC76F002812BC /* ImageTableViewCell.swift */,
 				8A68F4C421A8E9DE00A69B77 /* EggsViewController.swift */,
 				8A68F4C221A8E29A00A69B77 /* MapViewController.swift */,
+				82F1875721B03CF900235A4A /* ItemTableViewCell.swift */,
 				82A20BB721A07E99009CB074 /* Assets.xcassets */,
 				82A20BB921A07E99009CB074 /* LaunchScreen.storyboard */,
 				82A20BBC21A07E99009CB074 /* Info.plist */,
@@ -279,6 +282,7 @@
 			files = (
 				82A20BB121A07E98009CB074 /* AppDelegate.swift in Sources */,
 				8ACCD4F721ABC76F002812BC /* ImageTableViewCell.swift in Sources */,
+				82F1875821B03CF900235A4A /* ItemTableViewCell.swift in Sources */,
 				8200993821A2280800FF281E /* ListViewController.swift in Sources */,
 				82F1875621B03ABC00235A4A /* ViewController.swift in Sources */,
 				8A68F4CB21AB683800A69B77 /* BrandTableViewCell.swift in Sources */,

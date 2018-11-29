@@ -17,6 +17,7 @@ class ListViewController: UIViewController,
     @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var penButton: UIButton!
     @IBOutlet weak var micButton: UIButton!
+    @IBOutlet weak var itemTableView: UITableView!
     
     let audioEngine = AVAudioEngine()
     let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
@@ -51,14 +52,19 @@ class ListViewController: UIViewController,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
         cell.selectionStyle = .none
+        cell.configure(text: "", placeholder: "")
         return cell
     }
     
+    @IBAction func penButtonPressed(_ sender: Any) {
+        print("pen button pressed")
+    }
+    
     @IBAction func micButtonPressed(_ sender: Any) {
-        print("button pressed")
-        self.recordAndRecognizeSpeech()
+        print("mic button pressed")
+        // self.recordAndRecognizeSpeech()
     }
     
     func recordAndRecognizeSpeech() {
