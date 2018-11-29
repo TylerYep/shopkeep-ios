@@ -19,7 +19,6 @@ class ListViewController: UIViewController,
     @IBOutlet weak var penButton: UIButton!
     @IBOutlet weak var micButton: UIButton!
     @IBOutlet weak var itemTableView: UITableView!
-    @IBOutlet weak var debugLabel: UILabel!
     
     let audioEngine = AVAudioEngine()
     // let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
