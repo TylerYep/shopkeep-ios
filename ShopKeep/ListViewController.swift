@@ -11,6 +11,7 @@ import Speech
 
 class ListViewController: UIViewController,
                           UITableViewDelegate, UITableViewDataSource,
+                          UITextFieldDelegate,
                           SFSpeechRecognizerDelegate {
     
     @IBOutlet weak var itemView: UIView!
@@ -27,7 +28,7 @@ class ListViewController: UIViewController,
     
     override func viewDidLoad() {
         
-        self.requestSpeechAuthorization()
+//        self.requestSpeechAuthorization()
         
         // border
         itemView.layer.borderWidth = 1.0
@@ -56,7 +57,13 @@ class ListViewController: UIViewController,
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
         cell.selectionStyle = .none
         cell.configure(text: "", placeholder: "")
+        cell.itemTextField.delegate = self
         return cell
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @IBAction func penButtonPressed(_ sender: Any) {
@@ -68,63 +75,63 @@ class ListViewController: UIViewController,
         // self.recordAndRecognizeSpeech()
     }
     
-    func recordAndRecognizeSpeech() {
-        let node = audioEngine.inputNode
-        let recordingFormat = node.outputFormat(forBus: 0)
-        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {buffer, _ in
-            self.request.append(buffer)
-        }
-        audioEngine.prepare()
-        do {
-            try audioEngine.start()
-        } catch {
-            print("There has been an audio engine error.")
-            return
-        }
-        guard let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US")) else {
-            print("Speech recognition is not supported for your current locale.")
-            return
-        }
-        if !(recognizer.isAvailable) {
-            print("Speech recognition is not currently available. Check back at a later time.")
-            // Recognizer is not available right now
-            return
-        }
-        recognitionTask = recognizer.recognitionTask(with: request, resultHandler: { result, error in
-            if let result = result {
-                
-                let bestString = result.bestTranscription.formattedString
-                print("DEBUG: " + bestString)
-                
-                var lastString: String = ""
-                for segment in result.bestTranscription.segments {
-                    let indexTo = bestString.index(bestString.startIndex, offsetBy: segment.substringRange.location)
-                    // lastString = bestString.substring(from: indexTo)
-                    lastString = String(bestString[indexTo...])
-                }
-                print("DEBUG: " + lastString)
-                self.debugLabel.text = lastString
-            } else if let error = error {
-                print("There has been a speech recognition error.")
-                print(error)
-            }
-        })
-    }
-    
-    func requestSpeechAuthorization() {
-        SFSpeechRecognizer.requestAuthorization { authStatus in
-            OperationQueue.main.addOperation {
-                switch authStatus {
-                case .authorized:
-                    print("Speech authorized")
-                case .denied:
-                    print("User denied access to speech recognition")
-                case .restricted:
-                    print("Speech recognition restricted on this device")
-                case .notDetermined:
-                    print("Speech recognition not yet authorized")
-                }
-            }
-        }
-    }
+//    func recordAndRecognizeSpeech() {
+//        let node = audioEngine.inputNode
+//        let recordingFormat = node.outputFormat(forBus: 0)
+//        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {buffer, _ in
+//            self.request.append(buffer)
+//        }
+//        audioEngine.prepare()
+//        do {
+//            try audioEngine.start()
+//        } catch {
+//            print("There has been an audio engine error.")
+//            return
+//        }
+//        guard let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US")) else {
+//            print("Speech recognition is not supported for your current locale.")
+//            return
+//        }
+//        if !(recognizer.isAvailable) {
+//            print("Speech recognition is not currently available. Check back at a later time.")
+//            // Recognizer is not available right now
+//            return
+//        }
+//        recognitionTask = recognizer.recognitionTask(with: request, resultHandler: { result, error in
+//            if let result = result {
+//
+//                let bestString = result.bestTranscription.formattedString
+//                print("DEBUG: " + bestString)
+//
+//                var lastString: String = ""
+//                for segment in result.bestTranscription.segments {
+//                    let indexTo = bestString.index(bestString.startIndex, offsetBy: segment.substringRange.location)
+//                    // lastString = bestString.substring(from: indexTo)
+//                    lastString = String(bestString[indexTo...])
+//                }
+//                print("DEBUG: " + lastString)
+//                self.debugLabel.text = lastString
+//            } else if let error = error {
+//                print("There has been a speech recognition error.")
+//                print(error)
+//            }
+//        })
+//    }
+//
+//    func requestSpeechAuthorization() {
+//        SFSpeechRecognizer.requestAuthorization { authStatus in
+//            OperationQueue.main.addOperation {
+//                switch authStatus {
+//                case .authorized:
+//                    print("Speech authorized")
+//                case .denied:
+//                    print("User denied access to speech recognition")
+//                case .restricted:
+//                    print("Speech recognition restricted on this device")
+//                case .notDetermined:
+//                    print("Speech recognition not yet authorized")
+//                }
+//            }
+//        }
+//    }
 }
