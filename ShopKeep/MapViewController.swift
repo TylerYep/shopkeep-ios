@@ -9,6 +9,7 @@
 import UIKit
 
 var customRed = UIColor.init(red: 196/255, green: 21/255, blue: 23/255, alpha: 100)
+
 class MapViewController: UIViewController {
 
     @IBOutlet weak var dashView: UIView!
@@ -40,6 +41,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
 
+
     let bigSize = CGSize(width: 51, height: 64)
     let normalSize = CGSize(width: 34, height: 42)
 
@@ -62,17 +64,17 @@ class MapViewController: UIViewController {
 
         currItemLabel.text = "Eggs"
         for btn in btnArray {
+            print("\(btn.tag) \(btn.frame.minX), \(btn.frame.minY)")
             btn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
         }
         indexUpdated()
 
         navItem.title = ""
 
-        //drawDottedLine(start: CGPoint(x: 10, y: 10), end: CGPoint(x: 100, y: 100), view: dashView)
+        var itemsTest = ["start", "pasta", "pizza"]
+        drawPath(items: itemsTest)
 
 
-
-        // Do any additional setup after loading the view.
     }
 
     @objc func buttonClicked(sender:UIButton)
@@ -358,15 +360,17 @@ class MapViewController: UIViewController {
     }
 
     func drawDottedLine(start p0: CGPoint, end p1: CGPoint, view: UIView) {
+
         let shapeLayer = CAShapeLayer()
-        shapeLayer.strokeColor = UIColor.lightGray.cgColor
-        shapeLayer.lineWidth = 1
+        shapeLayer.strokeColor = colorArray[colorIndex%4].cgColor
+        shapeLayer.lineWidth = 2
         shapeLayer.lineDashPattern = [7, 3] // 7 is the length of dash, 3 is length of the gap.
 
         let path = CGMutablePath()
         path.addLines(between: [p0, p1])
         shapeLayer.path = path
         view.layer.addSublayer(shapeLayer)
+        colorIndex+=1
     }
 
 }
@@ -377,6 +381,8 @@ class GridView: UIView
 
     fileprivate func drawGrid()
     {
+
+        /*
         path = UIBezierPath()
         path.lineWidth = 5.0
         let blackColor = UIColor.black
@@ -450,7 +456,7 @@ class GridView: UIView
 
         //Close the path.
         path.close()
-
+    */
     }
 
     override func draw(_ rect: CGRect)
@@ -461,5 +467,88 @@ class GridView: UIView
         customRed.setStroke()
         path.stroke()
         
+    }
+}
+
+extension MapViewController {
+
+    func drawPath(items: [String]){
+        adjacencyList.add(from: eggsCoord, to: n2, weight: 0)
+        adjacencyList.add(from: eggsCoord, to: n3, weight: 0)
+        adjacencyList.add(from: n1, to: n2, weight: 0)
+        adjacencyList.add(from: n2, to: n5, weight: 0)
+        adjacencyList.add(from: n3, to: n6, weight: 0)
+        adjacencyList.add(from: n3, to: cornCoord, weight: 0)
+        adjacencyList.add(from: cornCoord, to: cheeseCoord, weight: 0)
+        adjacencyList.add(from: cheeseCoord, to: broccoliCoord, weight: 0)
+        adjacencyList.add(from: broccoliCoord, to: lemonCoord, weight: 0)
+        adjacencyList.add(from: lemonCoord, to: n4, weight: 0)
+        adjacencyList.add(from: n4, to: carrotCoord, weight: 0)
+        adjacencyList.add(from: carrotCoord, to: n7, weight: 0)
+
+        adjacencyList.add(from: n7, to: pizzaCoord, weight: 0)
+        adjacencyList.add(from: pizzaCoord, to: burgerCoord, weight: 0)
+        adjacencyList.add(from: burgerCoord, to: quesadillaCoord, weight: 0)
+
+        adjacencyList.add(from: quesadillaCoord, to: n6, weight: 0)
+        adjacencyList.add(from: n6, to: iceCreamCoord, weight: 0)
+        adjacencyList.add(from: iceCreamCoord, to: n5, weight: 0)
+        adjacencyList.add(from: n6, to: n9, weight: 0)
+
+        adjacencyList.add(from: n9, to: chickenCoord, weight: 0)
+        adjacencyList.add(from: chickenCoord, to: fishCoord, weight: 0)
+        adjacencyList.add(from: fishCoord, to: steakCoord, weight: 0)
+        adjacencyList.add(from: steakCoord, to: n8, weight: 0)
+
+        adjacencyList.add(from: pastaCoord, to: n11, weight: 0)
+        adjacencyList.add(from: n11, to: breadCoord, weight: 0)
+        adjacencyList.add(from: breadCoord, to: n10, weight: 0)
+
+        adjacencyList.add(from: n8, to: n10, weight: 0)
+        adjacencyList.add(from: n8, to: n5, weight: 0)
+
+
+        var vertices = [Vertex<String>]()
+        vertices.append(n1)
+
+        for item in items {
+            if let vertex  = getVertex(for : item) {
+                vertices.append(vertex)
+            }
+        }
+
+        for (index, item) in items.enumerated() {
+
+            if index < items.count - 1 {
+                guard let source = getVertex(for : items[index]) else {return}
+                guard let destination = getVertex(for : items[index + 1]) else {return}
+
+                if let edges = adjacencyList.breadthFirstSearch(from: source, to: destination) {
+                    for edge in edges {
+                        guard let srcPoint = getPoint(for: edge.source) else {continue}
+                        guard let dstPoint = getPoint(for: edge.destination) else {continue}
+                        drawDottedLine(start: srcPoint, end: dstPoint, view: pathView)
+                        print("found match")
+
+                        print("\(edge.source) -> \(edge.destination)")
+                    }
+                }
+            }
+        }
+        let edges = adjacencyList.breadthFirstSearch(from: n1, to: eggsCoord)
+        print(edges)
+        print(adjacencyList.description)
+
+        /*
+        if let edges = adjacencyList.breadthFirstSearch(from: n1, to: quesadillaCoord) {
+            for edge in edges {
+                drawDottedLine(start: edge.source., end: edge.destination, view: <#T##UIView#>)
+                print("found match")
+
+                print("\(edge.source) -> \(edge.destination)")
+            }
+        }
+        */
+
     }
 }

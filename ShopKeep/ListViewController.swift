@@ -26,7 +26,7 @@ class ListViewController: UIViewController,
     var recognitionTask: SFSpeechRecognitionTask?
     
     override func viewDidLoad() {
-        
+
 //        self.requestSpeechAuthorization()
         
         // border

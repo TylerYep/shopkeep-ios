@@ -22,6 +22,12 @@
 		8A68F4C921AB5F3500A69B77 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A68F4C821AB5F3500A69B77 /* Item.swift */; };
 		8A68F4CB21AB683800A69B77 /* BrandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A68F4CA21AB683800A69B77 /* BrandTableViewCell.swift */; };
 		8ACCD4F721ABC76F002812BC /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACCD4F621ABC76F002812BC /* ImageTableViewCell.swift */; };
+		8AF9E12121B101FD00E3D10D /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E12021B101FD00E3D10D /* Vertex.swift */; };
+		8AF9E12321B1028400E3D10D /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E12221B1028400E3D10D /* Edge.swift */; };
+		8AF9E12521B102CE00E3D10D /* Graphable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E12421B102CE00E3D10D /* Graphable.swift */; };
+		8AF9E12721B1035D00E3D10D /* AdjacencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E12621B1035C00E3D10D /* AdjacencyList.swift */; };
+		8AF9E12B21B11DD400E3D10D /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E12A21B11DD400E3D10D /* Queue.swift */; };
+		8AF9E12D21B128F600E3D10D /* HardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E12C21B128F600E3D10D /* HardData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +69,12 @@
 		8A68F4C821AB5F3500A69B77 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		8A68F4CA21AB683800A69B77 /* BrandTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTableViewCell.swift; sourceTree = "<group>"; };
 		8ACCD4F621ABC76F002812BC /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		8AF9E12021B101FD00E3D10D /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		8AF9E12221B1028400E3D10D /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
+		8AF9E12421B102CE00E3D10D /* Graphable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graphable.swift; sourceTree = "<group>"; };
+		8AF9E12621B1035C00E3D10D /* AdjacencyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjacencyList.swift; sourceTree = "<group>"; };
+		8AF9E12A21B11DD400E3D10D /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		8AF9E12C21B128F600E3D10D /* HardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,11 +130,17 @@
 				8A68F4C621AB5DB700A69B77 /* ItemViewController.swift */,
 				8A68F4C821AB5F3500A69B77 /* Item.swift */,
 				82A20BB021A07E98009CB074 /* AppDelegate.swift */,
-				8200993721A2280800FF281E /* ListViewController.swift */,
 				82A20BB421A07E98009CB074 /* Main.storyboard */,
 				8ACCD4F621ABC76F002812BC /* ImageTableViewCell.swift */,
+				8200993721A2280800FF281E /* ListViewController.swift */,
+				8AF9E12C21B128F600E3D10D /* HardData.swift */,
 				8A68F4C421A8E9DE00A69B77 /* EggsViewController.swift */,
 				8A68F4C221A8E29A00A69B77 /* MapViewController.swift */,
+				8AF9E12021B101FD00E3D10D /* Vertex.swift */,
+				8AF9E12221B1028400E3D10D /* Edge.swift */,
+				8AF9E12421B102CE00E3D10D /* Graphable.swift */,
+				8AF9E12A21B11DD400E3D10D /* Queue.swift */,
+				8AF9E12621B1035C00E3D10D /* AdjacencyList.swift */,
 				82F1875721B03CF900235A4A /* ItemTableViewCell.swift */,
 				82A20BB721A07E99009CB074 /* Assets.xcassets */,
 				82A20BB921A07E99009CB074 /* LaunchScreen.storyboard */,
@@ -282,10 +300,16 @@
 			files = (
 				82A20BB121A07E98009CB074 /* AppDelegate.swift in Sources */,
 				8ACCD4F721ABC76F002812BC /* ImageTableViewCell.swift in Sources */,
+				8AF9E12D21B128F600E3D10D /* HardData.swift in Sources */,
+				8AF9E12321B1028400E3D10D /* Edge.swift in Sources */,
+				8AF9E12521B102CE00E3D10D /* Graphable.swift in Sources */,
+				8AF9E12721B1035D00E3D10D /* AdjacencyList.swift in Sources */,
 				82F1875821B03CF900235A4A /* ItemTableViewCell.swift in Sources */,
 				8200993821A2280800FF281E /* ListViewController.swift in Sources */,
+				8AF9E12121B101FD00E3D10D /* Vertex.swift in Sources */,
 				82F1875621B03ABC00235A4A /* ViewController.swift in Sources */,
 				8A68F4CB21AB683800A69B77 /* BrandTableViewCell.swift in Sources */,
+				8AF9E12B21B11DD400E3D10D /* Queue.swift in Sources */,
 				8A68F4C321A8E29A00A69B77 /* MapViewController.swift in Sources */,
 				8A68F4C921AB5F3500A69B77 /* Item.swift in Sources */,
 				8A68F4C521A8E9DE00A69B77 /* EggsViewController.swift in Sources */,
