@@ -46,23 +46,23 @@ class MapViewController: UIViewController {
     let normalSize = CGSize(width: 34, height: 42)
 
     var map: UIImage?
-    var items = [String]()
+    var groceryList = [String]()
     var currIndex = 0
-    var list = [String]()
+    var completeItemList = [String]()
     var btnArray = [UIButton]()
     var mainLayer = CALayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         map = UIImage(named: "base_cvs_map")
-        list = ["Eggs", "Corn", "Cheese", "Brocolli", "Lemons", "Carrots", "Pizza", "Burgers", "Quesadillas", "Ice Cream", "Chicken", "Fish", "Steak", "Pasta", "Bread"]
+        completeItemList = ["eggs", "corn", "corn on the cob", "cheese", "brocolli", "lemons", "carrot", "carrots", "pizza", "burger", "burgers", "quesadillas", "quesadilla", "icecream", "ice cream", "chicken", "fish", "steak", "beef", "pasta", "bread"]
         btnArray = [eggsBtn, cornBtn, cheeseBtn, brocolliBtn, lemonBtn, carrotBtn, pizzaBtn, burgerBtn, quesadillaBtn, iceCreamBtn, chickenBtn, fishBtn, steakBtn, pastaBtn, breadBtn]
-        items = list
-        items.append("All items done!")
-
+        groceryList = ["bread", "pasta", "pizza", "quesadilla", "eggs"]
+        //items.append("All items done!")
+        setupButtons()
         pathView.backgroundColor = UIColor.clear
 
-        currItemLabel.text = "Eggs"
+        //currItemLabel.text = "Eggs"
         for btn in btnArray {
             print("\(btn.tag) \(btn.frame.minX), \(btn.frame.minY)")
             btn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
@@ -71,10 +71,83 @@ class MapViewController: UIViewController {
 
         navItem.title = ""
 
-        var itemsTest = ["start", "pasta", "pizza"]
-        drawPath(items: itemsTest)
+        //var testItems = ["bread", "pasta", "pizza", "quesadilla", "eggs"]
+
+        drawPath(items: groceryList)
 
 
+    }
+
+    //func getButtonFromString(str: String, array: [UIButton])
+    func setupButtons(){
+
+        //make all items lowercase
+        var temp = [String]()
+        for str in groceryList {
+            temp.append(str.lowercased())
+        }
+        groceryList = temp
+
+        //hide buttons
+        for btn in btnArray {
+            btn.isHidden = true
+        }
+
+        //unhide buttons for items in list
+        let itemList = groceryList
+        for item in itemList {
+            print(item)
+            switch (item) {
+            case "eggs":
+                eggsBtn.isHidden = false
+                break
+            case "corn", "canned corn", "corn on the cob":
+                cornBtn.isHidden = false
+                break
+            case "cheese", "parmesan", "cheddar":
+                cheeseBtn.isHidden = false
+                break
+            case "broccoli":
+                brocolliBtn.isHidden = false
+                break
+            case "lemon", "lemons":
+                lemonBtn.isHidden = false
+                break
+            case "carrot", "carrots":
+                carrotBtn.isHidden = false
+                break
+            case "pizza", "frozen pizza", "cheese pizza", "pepperoni pizza":
+                pizzaBtn.isHidden = false
+                break
+            case "burger", "burgers", "patties":
+                burgerBtn.isHidden = false
+                break
+            case "quesadilla", "quesadillas":
+                quesadillaBtn.isHidden = false
+                break
+            case "icecream", "ice cream":
+                iceCreamBtn.isHidden = false
+                break
+            case "chicken", "frozen chicken":
+                chickenBtn.isHidden = false
+                break
+            case "fish", "frozen fish":
+                fishBtn.isHidden = false
+                break
+            case "steak", "beef":
+                steakBtn.isHidden = false
+                break
+            case "pasta", "noodles":
+                pastaBtn.isHidden = false
+                break
+            case "bread", "baguette", "bread roll", "bread rolls":
+                breadBtn.isHidden = false
+                break
+            default:
+                print("item does not match any button")
+                break
+            }
+        }
     }
 
     @objc func buttonClicked(sender:UIButton)
@@ -254,9 +327,9 @@ class MapViewController: UIViewController {
     }
 
     @IBAction func rightArrowTapped(_ sender: Any) {
-        print(items.count)
+        print(groceryList.count)
         print(currIndex)
-        if currIndex + 1 <= items.count - 1{
+        if currIndex + 1 <= groceryList.count - 1{
             currIndex+=1
             indexUpdated()
         }
@@ -270,7 +343,7 @@ class MapViewController: UIViewController {
     }
 
     func indexUpdated(){
-        let currItem = items[currIndex]
+        let currItem = groceryList[currIndex]
         currItemLabel.text = currItem
 
         if currIndex == 0 {
@@ -281,7 +354,7 @@ class MapViewController: UIViewController {
             prevItemBtn.tintColor = UIColor.darkGray
         }
 
-        if currIndex == items.count - 1 {
+        if currIndex == groceryList.count - 1 {
             nextItemBtn.isEnabled = false
             nextItemBtn.tintColor = UIColor.lightGray
         } else {
@@ -290,51 +363,49 @@ class MapViewController: UIViewController {
         }
 
         switch (currItem) {
-        case list[0]:
-            print("eggs resized")
+        case "eggs":
             updateBtnSize(selected: eggsBtn)
             break
-        case list[1]:
-            print("corn resized")
+        case "corn", "canned corn", "corn on the cob":
             updateBtnSize(selected: cornBtn)
             break
-        case list[2]:
+        case "cheese", "parmesan", "cheddar":
             updateBtnSize(selected: cheeseBtn)
             break
-        case list[3]:
+        case "broccoli":
             updateBtnSize(selected: brocolliBtn)
             break
-        case list[4]:
+        case "lemon", "lemons":
             updateBtnSize(selected: lemonBtn)
             break
-        case list[5]:
+        case "carrot", "carrots":
             updateBtnSize(selected: carrotBtn)
             break
-        case list[6]:
+        case "pizza", "frozen pizza", "cheese pizza", "pepperoni pizza":
             updateBtnSize(selected: pizzaBtn)
             break
-        case list[7]:
+        case "burger", "burgers":
             updateBtnSize(selected: burgerBtn)
             break
-        case list[8]:
+        case "quesadilla", "quesadillas":
             updateBtnSize(selected: quesadillaBtn)
             break
-        case list[9]:
+        case "icecream", "ice cream":
             updateBtnSize(selected: iceCreamBtn)
             break
-        case list[10]:
+        case "chicken", "frozen chicken":
             updateBtnSize(selected: chickenBtn)
             break
-        case list[11]:
+        case "fish", "frozen fish":
             updateBtnSize(selected: fishBtn)
             break
-        case list[12]:
+        case "steak", "beef":
             updateBtnSize(selected: steakBtn)
             break
-        case list[13]:
+        case "pasta", "noodles":
             updateBtnSize(selected: pastaBtn)
             break
-        case list[14]:
+        case "bread", "baguette", "bread roll", "bread rolls":
             updateBtnSize(selected: breadBtn)
             break
         default:
@@ -363,14 +434,14 @@ class MapViewController: UIViewController {
 
         let shapeLayer = CAShapeLayer()
         shapeLayer.strokeColor = colorArray[colorIndex%4].cgColor
-        shapeLayer.lineWidth = 2
+        shapeLayer.lineWidth = 3
+        shapeLayer.opacity = 0.5
         shapeLayer.lineDashPattern = [7, 3] // 7 is the length of dash, 3 is length of the gap.
 
         let path = CGMutablePath()
         path.addLines(between: [p0, p1])
         shapeLayer.path = path
         view.layer.addSublayer(shapeLayer)
-        colorIndex+=1
     }
 
 }
@@ -473,82 +544,150 @@ class GridView: UIView
 extension MapViewController {
 
     func drawPath(items: [String]){
-        adjacencyList.add(from: eggsCoord, to: n2, weight: 0)
-        adjacencyList.add(from: eggsCoord, to: n3, weight: 0)
-        adjacencyList.add(from: n1, to: n2, weight: 0)
-        adjacencyList.add(from: n2, to: n5, weight: 0)
-        adjacencyList.add(from: n3, to: n6, weight: 0)
-        adjacencyList.add(from: n3, to: cornCoord, weight: 0)
-        adjacencyList.add(from: cornCoord, to: cheeseCoord, weight: 0)
-        adjacencyList.add(from: cheeseCoord, to: broccoliCoord, weight: 0)
-        adjacencyList.add(from: broccoliCoord, to: lemonCoord, weight: 0)
-        adjacencyList.add(from: lemonCoord, to: n4, weight: 0)
-        adjacencyList.add(from: n4, to: carrotCoord, weight: 0)
-        adjacencyList.add(from: carrotCoord, to: n7, weight: 0)
 
-        adjacencyList.add(from: n7, to: pizzaCoord, weight: 0)
-        adjacencyList.add(from: pizzaCoord, to: burgerCoord, weight: 0)
-        adjacencyList.add(from: burgerCoord, to: quesadillaCoord, weight: 0)
+        addEdges()
 
-        adjacencyList.add(from: quesadillaCoord, to: n6, weight: 0)
-        adjacencyList.add(from: n6, to: iceCreamCoord, weight: 0)
-        adjacencyList.add(from: iceCreamCoord, to: n5, weight: 0)
-        adjacencyList.add(from: n6, to: n9, weight: 0)
-
-        adjacencyList.add(from: n9, to: chickenCoord, weight: 0)
-        adjacencyList.add(from: chickenCoord, to: fishCoord, weight: 0)
-        adjacencyList.add(from: fishCoord, to: steakCoord, weight: 0)
-        adjacencyList.add(from: steakCoord, to: n8, weight: 0)
-
-        adjacencyList.add(from: pastaCoord, to: n11, weight: 0)
-        adjacencyList.add(from: n11, to: breadCoord, weight: 0)
-        adjacencyList.add(from: breadCoord, to: n10, weight: 0)
-
-        adjacencyList.add(from: n8, to: n10, weight: 0)
-        adjacencyList.add(from: n8, to: n5, weight: 0)
-
-
-        var vertices = [Vertex<String>]()
+        var vertices = [Vertex]()
         vertices.append(n1)
 
+        //get all vertices from item list
         for item in items {
             if let vertex  = getVertex(for : item) {
                 vertices.append(vertex)
             }
         }
 
-        for (index, item) in items.enumerated() {
+        //sort vertices by rough distance
+        vertices = vertices.sorted { (first: Vertex, second: Vertex) -> Bool in
+            if first == n1 {return true}
+            if second == n1 {return false}
 
-            if index < items.count - 1 {
-                guard let source = getVertex(for : items[index]) else {return}
-                guard let destination = getVertex(for : items[index + 1]) else {return}
-
-                if let edges = adjacencyList.breadthFirstSearch(from: source, to: destination) {
-                    for edge in edges {
-                        guard let srcPoint = getPoint(for: edge.source) else {continue}
-                        guard let dstPoint = getPoint(for: edge.destination) else {continue}
-                        drawDottedLine(start: srcPoint, end: dstPoint, view: pathView)
-                        print("found match")
-
-                        print("\(edge.source) -> \(edge.destination)")
-                    }
-                }
+            if first.data.x != second.data.x {
+                return first.data.x > second.data.x
+            } else {
+                return first.data.y > second.data.y
             }
         }
-        let edges = adjacencyList.breadthFirstSearch(from: n1, to: eggsCoord)
-        print(edges)
-        print(adjacencyList.description)
 
-        /*
-        if let edges = adjacencyList.breadthFirstSearch(from: n1, to: quesadillaCoord) {
-            for edge in edges {
-                drawDottedLine(start: edge.source., end: edge.destination, view: <#T##UIView#>)
-                print("found match")
-
-                print("\(edge.source) -> \(edge.destination)")
+        //sort item list to reflect vertices order
+        var tempItems = [String]()
+        for vert in vertices {
+            if let item = getItemName(for: vert) {
+                tempItems.append(item)
             }
         }
-        */
+        groceryList = tempItems
+        currItemLabel.text = groceryList[0]
+
+        for (index, vertex) in vertices.enumerated() {
+            if index >= vertices.count - 1 {break}
+            let source = vertex
+            let destination = vertices[index + 1]
+            drawShortestPath(src: source, dst: destination)
+        }
 
     }
+
+
+
+    func drawShortestPath(src: Vertex, dst: Vertex) {
+        if let edges = adjacencyList.breadthFirstSearch(from: src, to: dst) {
+            for edge in edges {
+               // print("edge weight: \(edge.weight)")
+                let srcPoint = edge.source.data
+                let dstPoint = edge.destination.data
+                drawDottedLine(start: srcPoint, end: dstPoint, view: pathView)
+               // print("drawing path start to item 1")
+               // print("\(edge.source) -> \(edge.destination)")
+            }
+            colorIndex+=1
+        }
+    }
+
+    func addEdges(){
+        adjacencyList.add(from: eggsCoord, to: n2, weight: Double(c2.y - eggs.y))
+        adjacencyList.add(from: eggsCoord, to: n3, weight: Double(eggs.y - c2.y))
+        adjacencyList.add(from: n1, to: n2, weight: Double(c1.y - c2.y))
+        adjacencyList.add(from: n2, to: n5, weight: Double(c2.x - c5.x))
+        adjacencyList.add(from: n3, to: n6, weight: Double(c3.x - c6.x))
+        adjacencyList.add(from: n3, to: cornCoord, weight: Double(c3.y - corn.y))
+        adjacencyList.add(from: cornCoord, to: cheeseCoord, weight: Double(corn.y - cheese.y))
+        adjacencyList.add(from: cheeseCoord, to: broccoliCoord, weight: Double(cheese.y - broccoli.y))
+        adjacencyList.add(from: broccoliCoord, to: lemonCoord, weight: Double(broccoli.y - lemon.y))
+        adjacencyList.add(from: lemonCoord, to: n4, weight: Double(lemon.y - c4.y))
+        adjacencyList.add(from: n4, to: carrotCoord, weight: Double(c4.x - carrot.x))
+        adjacencyList.add(from: carrotCoord, to: n7, weight: Double(carrot.x - c7.x))
+        adjacencyList.add(from: n7, to: pizzaCoord, weight: Double(pizza.y - c7.y))
+        adjacencyList.add(from: pizzaCoord, to: burgerCoord, weight: Double(burger.y - pizza.y))
+        adjacencyList.add(from: burgerCoord, to: quesadillaCoord, weight: Double(quesadilla.y - burger.y))
+        adjacencyList.add(from: quesadillaCoord, to: n6, weight: Double(c6.y - quesadilla.y))
+        adjacencyList.add(from: n6, to: iceCreamCoord, weight: Double(icecream.y - c6.y))
+        adjacencyList.add(from: iceCreamCoord, to: n5, weight: Double(c5.y - icecream.y))
+        adjacencyList.add(from: n6, to: n9, weight: Double(c6.x - c9.x))
+        adjacencyList.add(from: n9, to: chickenCoord, weight: Double(chicken.y - c9.y))
+        adjacencyList.add(from: chickenCoord, to: fishCoord, weight: Double(fish.y - chicken.y))
+        adjacencyList.add(from: fishCoord, to: steakCoord, weight: Double(steak.y - fish.y))
+        adjacencyList.add(from: steakCoord, to: n8, weight: Double(c8.y - steak.y))
+        adjacencyList.add(from: pastaCoord, to: n11, weight: Double(pasta.x - c11.x))
+        adjacencyList.add(from: pastaCoord, to: n9, weight: Double(c9.x - pasta.x))
+        adjacencyList.add(from: n11, to: breadCoord, weight: Double(bread.y - c11.y))
+        adjacencyList.add(from: breadCoord, to: n10, weight: Double(c10.y - bread.y))
+        adjacencyList.add(from: n8, to: n10, weight: Double(c8.x - c10.x))
+        adjacencyList.add(from: n8, to: n5, weight: Double(c5.x - c8.x))
+    }
+
 }
+
+
+/*
+ switch (currItem) {
+ case completeItemList[0]:
+ updateBtnSize(selected: eggsBtn)
+ break
+ case completeItemList[1]:
+ updateBtnSize(selected: cornBtn)
+ break
+ case completeItemList[2]:
+ updateBtnSize(selected: cheeseBtn)
+ break
+ case completeItemList[3]:
+ updateBtnSize(selected: brocolliBtn)
+ break
+ case completeItemList[4]:
+ updateBtnSize(selected: lemonBtn)
+ break
+ case completeItemList[5]:
+ updateBtnSize(selected: carrotBtn)
+ break
+ case completeItemList[6]:
+ updateBtnSize(selected: pizzaBtn)
+ break
+ case completeItemList[7]:
+ updateBtnSize(selected: burgerBtn)
+ break
+ case completeItemList[8]:
+ updateBtnSize(selected: quesadillaBtn)
+ break
+ case completeItemList[9]:
+ updateBtnSize(selected: iceCreamBtn)
+ break
+ case completeItemList[10]:
+ updateBtnSize(selected: chickenBtn)
+ break
+ case completeItemList[11]:
+ updateBtnSize(selected: fishBtn)
+ break
+ case completeItemList[12]:
+ updateBtnSize(selected: steakBtn)
+ break
+ case completeItemList[13]:
+ updateBtnSize(selected: pastaBtn)
+ break
+ case completeItemList[14]:
+ updateBtnSize(selected: breadBtn)
+ break
+ default:
+ updateBtnSize(selected: nil)
+ break
+ }
+ */

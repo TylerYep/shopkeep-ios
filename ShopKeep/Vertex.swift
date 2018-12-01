@@ -7,25 +7,31 @@
 //
 
 import Foundation
+import UIKit
 
 
-public struct Vertex<T: Hashable> {
-    var data: T
+public struct Vertex {
+    var data: CGPoint
 }
 
 
 extension Vertex: Hashable {
-    public var hashValue: Int { // 1
-        return "\(data)".hashValue
+
+    public static func == (lhs: Vertex, rhs: Vertex) -> Bool {
+        return lhs.data == rhs.data
+
     }
 
-    static public func ==(lhs: Vertex, rhs: Vertex) -> Bool { // 2
-        return lhs.data == rhs.data
+    public var hashValue: Int { // 1
+        return "\(data.x)\(data.y)".hashValue
     }
+
 }
 
-extension Vertex: CustomStringConvertible {
-    public var description: String {
-        return "\(data)"
+extension Vertex {
+
+
+    public var description: CGPoint {
+        return data
     }
 }

@@ -6,14 +6,15 @@
 //  Copyright © 2018 Alex Fu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-open class AdjacencyList<T: Hashable> {
-    public var adjacencyDict : [Vertex<T>: [Edge<T>]] = [:]
+open class AdjacencyList {
+    public var adjacencyDict : [Vertex: [Edge]] = [:]
     public init() {}
 }
 
 extension AdjacencyList: Graphable {
+
     var description: CustomStringConvertible {
         var result = ""
         for (vertex, edges) in adjacencyDict {
@@ -30,14 +31,14 @@ extension AdjacencyList: Graphable {
         return result
     }
 
-    func add(from source: Vertex<T>, to destination: Vertex<T>, weight: Double?) {
+    func add(from source: Vertex, to destination: Vertex, weight: Double?) {
         let edgeTo = Edge(source: source, destination: destination, weight: weight)
         adjacencyDict[source]?.append(edgeTo)
         let edgeFrom = Edge(source: destination, destination: source, weight: weight)
         adjacencyDict[destination]?.append(edgeFrom)
     }
 
-    func weight(from source: Vertex<T>, to destination: Vertex<T>) -> Double? {
+    func weight(from source: Vertex, to destination: Vertex) -> Double? {
         guard let edges = adjacencyDict[source] else {
             return nil
         }
@@ -51,13 +52,11 @@ extension AdjacencyList: Graphable {
         return nil
     }
 
-    func edges(from source: Vertex<T>) -> [Edge<T>]? {
+    func edges(from source: Vertex) -> [Edge]? {
         return adjacencyDict[source]
     }
 
-    public typealias Element = T
-
-    public func createVertex(data: Element) -> Vertex<Element> {
+    public func createVertex(data: CGPoint) -> Vertex {
         let vertex = Vertex(data: data)
 
         if adjacencyDict[vertex] == nil {

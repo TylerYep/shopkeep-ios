@@ -8,8 +8,8 @@
 
 import Foundation
 
-public struct Edge<T: Hashable> {
-    public var source: Vertex<T> // 1
-    public var destination: Vertex<T>
+public struct Edge {
+    public var source: Vertex // 1
+    public var destination: Vertex
     public let weight: Double? // 2
 }

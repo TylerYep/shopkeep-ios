@@ -8,40 +8,40 @@
 
 import UIKit
 
-let adjacencyList = AdjacencyList<String>()
-let eggsCoord = adjacencyList.createVertex(data: Coords.eggs.rawValue)
-let pizzaCoord = adjacencyList.createVertex(data: "(170, 50)")
-let burgerCoord = adjacencyList.createVertex(data: "(170, 136)")
-let quesadillaCoord = adjacencyList.createVertex(data: "(170, 186)")
-let iceCreamCoord = adjacencyList.createVertex(data: "(170, 356)")
-let chickenCoord = adjacencyList.createVertex(data: "(85, 304)")
+let adjacencyList = AdjacencyList()
+let eggsCoord = adjacencyList.createVertex(data: eggs)
+let pizzaCoord = adjacencyList.createVertex(data: pizza)
+let burgerCoord = adjacencyList.createVertex(data: burger)
+let quesadillaCoord = adjacencyList.createVertex(data: quesadilla)
+let iceCreamCoord = adjacencyList.createVertex(data: icecream)
+let chickenCoord = adjacencyList.createVertex(data: chicken)
 
-let lemonCoord = adjacencyList.createVertex(data: "(335, 75)")
-let carrotCoord = adjacencyList.createVertex(data: "(286, 50)")
+let lemonCoord = adjacencyList.createVertex(data: lemon)
+let carrotCoord = adjacencyList.createVertex(data: carrot)
 
-let pastaCoord = adjacencyList.createVertex(data: "(55, 187)")
-let fishCoord = adjacencyList.createVertex(data: "(85, 356)")
-let steakCoord = adjacencyList.createVertex(data: "(85, 422)")
-let breadCoord = adjacencyList.createVertex(data: "(30, 393)")
+let pastaCoord = adjacencyList.createVertex(data: pasta)
+let fishCoord = adjacencyList.createVertex(data: fish)
+let steakCoord = adjacencyList.createVertex(data: steak)
+let breadCoord = adjacencyList.createVertex(data: bread)
 
-let cornCoord = adjacencyList.createVertex(data: "(335, 230)")
-let cheeseCoord = adjacencyList.createVertex(data: "(335, 191)")
-let broccoliCoord = adjacencyList.createVertex(data: "(335, 130)")
+let cornCoord = adjacencyList.createVertex(data: corn)
+let cheeseCoord = adjacencyList.createVertex(data: cheese)
+let broccoliCoord = adjacencyList.createVertex(data: broccoli)
 
 
-let n1 = adjacencyList.createVertex(data: "(335, 479)")
-let n2 = adjacencyList.createVertex(data: "(335, 445)")
-let n3 = adjacencyList.createVertex(data: "(335, 187)")
-let n4 = adjacencyList.createVertex(data: "(335, 50)") //top right corner
-let n5 = adjacencyList.createVertex(data: "(170, 445)")
+let n1 = adjacencyList.createVertex(data: c1)
+let n2 = adjacencyList.createVertex(data: c2)
+let n3 = adjacencyList.createVertex(data: c3)
+let n4 = adjacencyList.createVertex(data: c4) //top right corner
+let n5 = adjacencyList.createVertex(data: c5)
 
-let n6 = adjacencyList.createVertex(data: "(170, 187)")
-let n7 = adjacencyList.createVertex(data: "(170, 50)")
-let n8 = adjacencyList.createVertex(data: "(85, 445)")
-let n9 = adjacencyList.createVertex(data: "(85, 187)")
+let n6 = adjacencyList.createVertex(data: c6)
+let n7 = adjacencyList.createVertex(data: c7)
+let n8 = adjacencyList.createVertex(data: c8)
+let n9 = adjacencyList.createVertex(data: c9)
 
-let n10 = adjacencyList.createVertex(data: "(30, 445)")
-let n11 = adjacencyList.createVertex(data: "(30, 187)")
+let n10 = adjacencyList.createVertex(data: c10)
+let n11 = adjacencyList.createVertex(data: c11)
 
 enum Coords: String {
     case eggs = "eggs"
@@ -72,67 +72,65 @@ enum Coords: String {
     case c11 = "c11"
 }
 
-let eggs = CGPoint(x: 335.0, y: 434.0)
-let pizza = CGPoint(x: 190.0, y: 50.0)
+let eggs = CGPoint(x: 342.0, y: 434.0)
+let pizza = CGPoint(x: 190.0, y: 30.0)
 let burger = CGPoint(x: 190.0, y: 136.0)
 let quesadilla = CGPoint(x: 190.0, y: 170.0)
 let icecream = CGPoint(x: 190.0, y: 356.0)
 let chicken = CGPoint(x: 115.0, y: 304.0)
-let lemon = CGPoint(x: 335.0, y: 75.0)
-let carrot = CGPoint(x: 286.0, y: 50.0)
+let lemon = CGPoint(x: 342.0, y: 75.0)
+let carrot = CGPoint(x: 286.0, y: 30.0)
 let pasta = CGPoint(x: 55.0, y: 225.0)
 let fish = CGPoint(x: 115.0, y: 356.0)
 let steak = CGPoint(x: 115.0, y: 422.0)
-let bread = CGPoint(x: 30.0, y: 393.0)
-let corn = CGPoint(x: 335.0, y: 230.0)
-let cheese = CGPoint(x: 335.0, y: 170.0)
-let broccoli = CGPoint(x: 335.0, y: 130.0)
-let c1 = CGPoint(x: 335.0, y: 479.0)
-let c2 = CGPoint(x: 335.0, y: 470.0)
-let c3 = CGPoint(x: 335.0, y: 225.0)
-let c4 = CGPoint(x: 335.0, y: 50.0)
+let bread = CGPoint(x: 35.0, y: 393.0)
+let corn = CGPoint(x: 342.0, y: 230.0)
+let cheese = CGPoint(x: 342.0, y: 170.0)
+let broccoli = CGPoint(x: 342.0, y: 130.0)
+let c1 = CGPoint(x: 342.0, y: 505.0)
+let c2 = CGPoint(x: 342.0, y: 470.0)
+let c3 = CGPoint(x: 342.0, y: 225.0)
+let c4 = CGPoint(x: 342.0, y: 30.0)
 let c5 = CGPoint(x: 190.0, y: 470.0)
 let c6 = CGPoint(x: 190.0, y: 225.0)
-let c7 = CGPoint(x: 190.0, y: 50.0)
+let c7 = CGPoint(x: 190.0, y: 30.0)
 let c8 = CGPoint(x: 115.0, y: 470.0)
 let c9 = CGPoint(x: 115.0, y: 225.0)
-let c10 = CGPoint(x: 30.0, y: 470.0)
-let c11 = CGPoint(x: 30.0, y: 225.0)
+let c10 = CGPoint(x: 35.0, y: 470.0)
+let c11 = CGPoint(x: 35.0, y: 225.0)
 
 let colorArray = [UIColor.red, UIColor.blue, UIColor.green, UIColor.purple]
 var colorIndex = 0
 
-func getVertex(for item: String)->Vertex<String>?  {
+func getVertex(for item: String)->Vertex?  {
     switch item {
-    case "start":
-        return n1
     case "eggs":
         return eggsCoord
-    case "pizza":
+    case "pizza", "frozen pizza", "cheese pizza", "pepperoni pizza":
         return pizzaCoord
     case "burger", "burgers":
         return burgerCoord
-    case "quesadilla":
+    case "quesadilla", "quesadillas":
         return quesadillaCoord
-    case "icecream":
+    case "icecream", "ice cream":
         return iceCreamCoord
-    case "chicken":
+    case "chicken", "frozen chicken":
         return chickenCoord
-    case "lemon":
+    case "lemon", "lemons":
         return lemonCoord
-    case "carrot":
+    case "carrot", "carrots":
         return carrotCoord
-    case "pasta":
+    case "pasta", "noodles":
         return pastaCoord
-    case "fish":
+    case "fish", "frozen fish":
         return fishCoord
-    case "steak":
+    case "steak", "beef":
         return steakCoord
-    case "bread":
+    case "bread", "baguette", "bread roll", "bread rolls":
         return breadCoord
-    case "corn":
+    case "corn", "canned corn", "corn on the cob":
         return cornCoord
-    case "cheese":
+    case "cheese", "parmesan", "cheddar":
         return cheeseCoord
     case "broccoli":
         return broccoliCoord
@@ -142,7 +140,7 @@ func getVertex(for item: String)->Vertex<String>?  {
     }
 }
 
-func getPoint(for vertex: Vertex<String>)->CGPoint?  {
+func getPoint(for vertex: Vertex)->CGPoint?  {
     switch vertex {
     case eggsCoord:
         return eggs
@@ -201,3 +199,42 @@ func getPoint(for vertex: Vertex<String>)->CGPoint?  {
         return nil
     }
 }
+
+func getItemName(for vertex: Vertex)->String?  {
+    switch (vertex.data) {
+    case eggs:
+        return "eggs"
+    case pizza:
+        return "pizza"
+    case burger:
+        return "burger"
+    case quesadilla:
+        return "quesadilla"
+    case icecream:
+        return "ice cream"
+    case chicken:
+        return "chicken"
+    case lemon:
+        return "lemon"
+    case carrot:
+        return "carrots"
+    case pasta:
+        return "pasta"
+    case fish:
+        return "fish"
+    case steak:
+        return "steak"
+    case bread:
+        return "bread"
+    case corn:
+        return "corn"
+    case cheese:
+        return "cheese"
+    case broccoli:
+        return "broccoli"
+    default:
+        print("default case")
+        return nil
+    }
+}
+
