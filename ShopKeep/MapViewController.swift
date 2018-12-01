@@ -12,8 +12,6 @@ var customRed = UIColor.init(red: 196/255, green: 21/255, blue: 23/255, alpha: 1
 
 class MapViewController: UIViewController {
 
-    @IBOutlet weak var dashView: UIView!
-    @IBOutlet weak var pathView: GridView!
     @IBOutlet weak var mapView: UIImageView!
     @IBOutlet weak var helpBtn: UIImageView!
     @IBOutlet weak var endTripBtn: UIButton!
@@ -42,8 +40,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var navItem: UINavigationItem!
 
 
-    let bigSize = CGSize(width: 51, height: 64)
-    let normalSize = CGSize(width: 34, height: 42)
+    let bigSize = CGSize(width: 40, height: 48)
+    let normalSize = CGSize(width: 25, height: 30)
 
     var map: UIImage?
     var groceryList = [String]()
@@ -57,17 +55,18 @@ class MapViewController: UIViewController {
         map = UIImage(named: "base_cvs_map")
         completeItemList = ["eggs", "corn", "corn on the cob", "cheese", "brocolli", "lemons", "carrot", "carrots", "pizza", "burger", "burgers", "quesadillas", "quesadilla", "icecream", "ice cream", "chicken", "fish", "steak", "beef", "pasta", "bread"]
         btnArray = [eggsBtn, cornBtn, cheeseBtn, brocolliBtn, lemonBtn, carrotBtn, pizzaBtn, burgerBtn, quesadillaBtn, iceCreamBtn, chickenBtn, fishBtn, steakBtn, pastaBtn, breadBtn]
-        groceryList = ["bread", "pasta", "pizza", "quesadilla", "eggs"]
+        //groceryList = ["eggs", "corn", "lemon", "quesadilla"]
+        groceryList = ["pasta", "bread", "lemon", "carrots", "chicken", "steak"]
+
         //items.append("All items done!")
         setupButtons()
-        pathView.backgroundColor = UIColor.clear
+        //pathView.backgroundColor = UIColor.clear
 
         //currItemLabel.text = "Eggs"
         for btn in btnArray {
             print("\(btn.tag) \(btn.frame.minX), \(btn.frame.minY)")
             btn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
         }
-        indexUpdated()
 
         navItem.title = ""
 
@@ -433,19 +432,34 @@ class MapViewController: UIViewController {
     func drawDottedLine(start p0: CGPoint, end p1: CGPoint, view: UIView) {
 
         let shapeLayer = CAShapeLayer()
+        shapeLayer.fillColor = colorArray[colorIndex%4].cgColor
         shapeLayer.strokeColor = colorArray[colorIndex%4].cgColor
-        shapeLayer.lineWidth = 3
+        shapeLayer.lineWidth = 4
         shapeLayer.opacity = 0.5
         shapeLayer.lineDashPattern = [7, 3] // 7 is the length of dash, 3 is length of the gap.
 
         let path = CGMutablePath()
         path.addLines(between: [p0, p1])
         shapeLayer.path = path
+
+        // animate it
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = 0
+        animation.fromValue = 1
+
+
+        animation.duration = 10
+        shapeLayer.add(animation, forKey: "MyAnimation")
+        CATransaction.begin()
         view.layer.addSublayer(shapeLayer)
+
+        // save shape layer    }
+
     }
 
 }
 
+/*
 class GridView: UIView
 {
     private var path = UIBezierPath()
@@ -540,6 +554,7 @@ class GridView: UIView
         
     }
 }
+*/
 
 extension MapViewController {
 
@@ -578,6 +593,8 @@ extension MapViewController {
         }
         groceryList = tempItems
         currItemLabel.text = groceryList[0]
+        groceryList.append("All items done!")
+        indexUpdated()
 
         for (index, vertex) in vertices.enumerated() {
             if index >= vertices.count - 1 {break}
@@ -596,7 +613,7 @@ extension MapViewController {
                // print("edge weight: \(edge.weight)")
                 let srcPoint = edge.source.data
                 let dstPoint = edge.destination.data
-                drawDottedLine(start: srcPoint, end: dstPoint, view: pathView)
+                drawDottedLine(start: srcPoint, end: dstPoint, view: mapView)
                // print("drawing path start to item 1")
                // print("\(edge.source) -> \(edge.destination)")
             }

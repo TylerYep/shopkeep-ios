@@ -8,6 +8,20 @@
 
 import UIKit
 
+public var screenWidth: CGFloat {
+    return UIScreen.main.bounds.width
+}
+
+// Screen height.
+public var screenHeight: CGFloat {
+    return UIScreen.main.bounds.height
+}
+
+let verticalMidpoint = screenHeight * (523/667) * (230 / 523)
+let horizontalMidpoint = screenWidth * (195/375)
+let bottomLine = screenHeight * (523/667) * (480/523)
+let aisle18 = screenWidth - 35
+
 let adjacencyList = AdjacencyList()
 let eggsCoord = adjacencyList.createVertex(data: eggs)
 let pizzaCoord = adjacencyList.createVertex(data: pizza)
@@ -72,32 +86,32 @@ enum Coords: String {
     case c11 = "c11"
 }
 
-let eggs = CGPoint(x: 342.0, y: 434.0)
-let pizza = CGPoint(x: 190.0, y: 30.0)
-let burger = CGPoint(x: 190.0, y: 136.0)
-let quesadilla = CGPoint(x: 190.0, y: 170.0)
-let icecream = CGPoint(x: 190.0, y: 356.0)
+let eggs = CGPoint(x: aisle18, y: 434.0) //342
+let pizza = CGPoint(x: horizontalMidpoint, y: 30.0) //195
+let burger = CGPoint(x: horizontalMidpoint, y: 136.0)
+let quesadilla = CGPoint(x: horizontalMidpoint, y: 170.0)
+let icecream = CGPoint(x: horizontalMidpoint, y: 356.0)
 let chicken = CGPoint(x: 115.0, y: 304.0)
-let lemon = CGPoint(x: 342.0, y: 75.0)
+let lemon = CGPoint(x: aisle18, y: 75.0)
 let carrot = CGPoint(x: 286.0, y: 30.0)
-let pasta = CGPoint(x: 55.0, y: 225.0)
-let fish = CGPoint(x: 115.0, y: 356.0)
+let pasta = CGPoint(x: 55.0, y: verticalMidpoint) //225
+let fish = CGPoint(x: 115.0, y: 336.0)
 let steak = CGPoint(x: 115.0, y: 422.0)
-let bread = CGPoint(x: 35.0, y: 393.0)
-let corn = CGPoint(x: 342.0, y: 230.0)
-let cheese = CGPoint(x: 342.0, y: 170.0)
-let broccoli = CGPoint(x: 342.0, y: 130.0)
-let c1 = CGPoint(x: 342.0, y: 505.0)
-let c2 = CGPoint(x: 342.0, y: 470.0)
-let c3 = CGPoint(x: 342.0, y: 225.0)
-let c4 = CGPoint(x: 342.0, y: 30.0)
-let c5 = CGPoint(x: 190.0, y: 470.0)
-let c6 = CGPoint(x: 190.0, y: 225.0)
-let c7 = CGPoint(x: 190.0, y: 30.0)
-let c8 = CGPoint(x: 115.0, y: 470.0)
-let c9 = CGPoint(x: 115.0, y: 225.0)
-let c10 = CGPoint(x: 35.0, y: 470.0)
-let c11 = CGPoint(x: 35.0, y: 225.0)
+let bread = CGPoint(x: 35.0, y: 356.0)
+let corn = CGPoint(x: aisle18, y: 230.0)
+let cheese = CGPoint(x: aisle18, y: 170.0)
+let broccoli = CGPoint(x: aisle18, y: 130.0)
+let c1 = CGPoint(x: aisle18, y: 505.0)
+let c2 = CGPoint(x: aisle18, y: bottomLine) //470
+let c3 = CGPoint(x: aisle18, y: verticalMidpoint)
+let c4 = CGPoint(x: aisle18, y: 30.0)
+let c5 = CGPoint(x: horizontalMidpoint, y: bottomLine)
+let c6 = CGPoint(x: horizontalMidpoint, y: verticalMidpoint)
+let c7 = CGPoint(x: horizontalMidpoint, y: 30.0)
+let c8 = CGPoint(x: 115.0, y: bottomLine)
+let c9 = CGPoint(x: 115.0, y: verticalMidpoint)
+let c10 = CGPoint(x: 35.0, y: bottomLine)
+let c11 = CGPoint(x: 35.0, y: verticalMidpoint)
 
 let colorArray = [UIColor.red, UIColor.blue, UIColor.green, UIColor.purple]
 var colorIndex = 0
