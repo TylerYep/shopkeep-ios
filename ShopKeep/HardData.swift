@@ -17,9 +17,20 @@ public var screenHeight: CGFloat {
     return UIScreen.main.bounds.height
 }
 
-let verticalMidpoint = screenHeight * (523/667) * (230 / 523)
+extension CGPoint: Hashable {
+
+    public static func == (lhs: CGPoint, rhs: CGPoint) -> Bool {
+        return (lhs.x == rhs.x && lhs.y == rhs.y)
+
+    }
+
+    public var hashValue: Int { // 1
+        return "\(x)\(y)".hashValue
+    }
+}
+let verticalMidpoint = screenHeight * (520/667) * (225 / 523)
 let horizontalMidpoint = screenWidth * (195/375)
-let bottomLine = screenHeight * (523/667) * (480/523)
+let bottomLine = screenHeight * (523/667) * (470/523)
 let aisle18 = screenWidth - 35
 
 let adjacencyList = AdjacencyList()
@@ -85,19 +96,18 @@ enum Coords: String {
     case c10 = "c10"
     case c11 = "c11"
 }
-
-let eggs = CGPoint(x: aisle18, y: 434.0) //342
+let eggs = CGPoint(x: aisle18, y: 425.0) //342
 let pizza = CGPoint(x: horizontalMidpoint, y: 30.0) //195
 let burger = CGPoint(x: horizontalMidpoint, y: 136.0)
 let quesadilla = CGPoint(x: horizontalMidpoint, y: 170.0)
 let icecream = CGPoint(x: horizontalMidpoint, y: 356.0)
-let chicken = CGPoint(x: 115.0, y: 304.0)
+let chicken = CGPoint(x: 115.0, y: 275.0)
 let lemon = CGPoint(x: aisle18, y: 75.0)
 let carrot = CGPoint(x: 286.0, y: 30.0)
-let pasta = CGPoint(x: 55.0, y: verticalMidpoint) //225
-let fish = CGPoint(x: 115.0, y: 336.0)
-let steak = CGPoint(x: 115.0, y: 422.0)
-let bread = CGPoint(x: 35.0, y: 356.0)
+let pasta = CGPoint(x: 75.0, y: verticalMidpoint) //225
+let fish = CGPoint(x: 115.0, y: 320.0)
+let steak = CGPoint(x: 115.0, y: 390.0)
+let bread = CGPoint(x: 42.0, y: 356.0)
 let corn = CGPoint(x: aisle18, y: 230.0)
 let cheese = CGPoint(x: aisle18, y: 170.0)
 let broccoli = CGPoint(x: aisle18, y: 130.0)
@@ -110,10 +120,10 @@ let c6 = CGPoint(x: horizontalMidpoint, y: verticalMidpoint)
 let c7 = CGPoint(x: horizontalMidpoint, y: 30.0)
 let c8 = CGPoint(x: 115.0, y: bottomLine)
 let c9 = CGPoint(x: 115.0, y: verticalMidpoint)
-let c10 = CGPoint(x: 35.0, y: bottomLine)
-let c11 = CGPoint(x: 35.0, y: verticalMidpoint)
+let c10 = CGPoint(x: 42.0, y: bottomLine)
+let c11 = CGPoint(x: 42.0, y: verticalMidpoint)
 
-let colorArray = [UIColor.red, UIColor.blue, UIColor.green, UIColor.purple]
+let colorArray = [UIColor.red, orange, darkGold, customGreen, UIColor.blue, UIColor.purple]
 var colorIndex = 0
 
 func getVertex(for item: String)->Vertex?  {
@@ -251,4 +261,3 @@ func getItemName(for vertex: Vertex)->String?  {
         return nil
     }
 }
-

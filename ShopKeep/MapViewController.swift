@@ -8,8 +8,12 @@
 
 import UIKit
 
-var customRed = UIColor.init(red: 196/255, green: 21/255, blue: 23/255, alpha: 100)
 
+var customRed = UIColor.init(red: 196/255, green: 21/255, blue: 23/255, alpha: 100)
+var customGreen = UIColor.init(red: 65/255, green: 117/255, blue: 5/255, alpha: 100)
+var gold = UIColor.init(red: 252/255, green:194/255, blue:0/255, alpha:100)
+var darkGold = UIColor.init(red: 209/255, green:183/255, blue:47/255, alpha:100)
+var orange = UIColor.init(red: 245/255, green: 117/255, blue: 35/255, alpha:100)
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: UIImageView!
@@ -39,6 +43,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var navItem: UINavigationItem!
 
+    weak var shapeLayer: CAShapeLayer?
 
     let bigSize = CGSize(width: 40, height: 48)
     let normalSize = CGSize(width: 25, height: 30)
@@ -50,278 +55,24 @@ class MapViewController: UIViewController {
     var btnArray = [UIButton]()
     var mainLayer = CALayer()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        map = UIImage(named: "base_cvs_map")
+    override func viewDidAppear(_ animated: Bool) {
         completeItemList = ["eggs", "corn", "corn on the cob", "cheese", "brocolli", "lemons", "carrot", "carrots", "pizza", "burger", "burgers", "quesadillas", "quesadilla", "icecream", "ice cream", "chicken", "fish", "steak", "beef", "pasta", "bread"]
         btnArray = [eggsBtn, cornBtn, cheeseBtn, brocolliBtn, lemonBtn, carrotBtn, pizzaBtn, burgerBtn, quesadillaBtn, iceCreamBtn, chickenBtn, fishBtn, steakBtn, pastaBtn, breadBtn]
         //groceryList = ["eggs", "corn", "lemon", "quesadilla"]
-        groceryList = ["pasta", "bread", "lemon", "carrots", "chicken", "steak"]
-
-        //items.append("All items done!")
+        groceryList = ["eggs", "corn", "pizza", "bread"]
         setupButtons()
-        //pathView.backgroundColor = UIColor.clear
-
-        //currItemLabel.text = "Eggs"
-        for btn in btnArray {
-            print("\(btn.tag) \(btn.frame.minX), \(btn.frame.minY)")
-            btn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
-        }
-
-        navItem.title = ""
-
-        //var testItems = ["bread", "pasta", "pizza", "quesadilla", "eggs"]
 
         drawPath(items: groceryList)
 
 
     }
-
-    //func getButtonFromString(str: String, array: [UIButton])
-    func setupButtons(){
-
-        //make all items lowercase
-        var temp = [String]()
-        for str in groceryList {
-            temp.append(str.lowercased())
-        }
-        groceryList = temp
-
-        //hide buttons
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        map = UIImage(named: "base_cvs_map")
+        navItem.title = ""
         for btn in btnArray {
+            btn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
             btn.isHidden = true
-        }
-
-        //unhide buttons for items in list
-        let itemList = groceryList
-        for item in itemList {
-            print(item)
-            switch (item) {
-            case "eggs":
-                eggsBtn.isHidden = false
-                break
-            case "corn", "canned corn", "corn on the cob":
-                cornBtn.isHidden = false
-                break
-            case "cheese", "parmesan", "cheddar":
-                cheeseBtn.isHidden = false
-                break
-            case "broccoli":
-                brocolliBtn.isHidden = false
-                break
-            case "lemon", "lemons":
-                lemonBtn.isHidden = false
-                break
-            case "carrot", "carrots":
-                carrotBtn.isHidden = false
-                break
-            case "pizza", "frozen pizza", "cheese pizza", "pepperoni pizza":
-                pizzaBtn.isHidden = false
-                break
-            case "burger", "burgers", "patties":
-                burgerBtn.isHidden = false
-                break
-            case "quesadilla", "quesadillas":
-                quesadillaBtn.isHidden = false
-                break
-            case "icecream", "ice cream":
-                iceCreamBtn.isHidden = false
-                break
-            case "chicken", "frozen chicken":
-                chickenBtn.isHidden = false
-                break
-            case "fish", "frozen fish":
-                fishBtn.isHidden = false
-                break
-            case "steak", "beef":
-                steakBtn.isHidden = false
-                break
-            case "pasta", "noodles":
-                pastaBtn.isHidden = false
-                break
-            case "bread", "baguette", "bread roll", "bread rolls":
-                breadBtn.isHidden = false
-                break
-            default:
-                print("item does not match any button")
-                break
-            }
-        }
-    }
-
-    @objc func buttonClicked(sender:UIButton)
-    {
-        switch sender.tag
-        {
-        case 1: print("Eggs")
-            let eggsImage = UIImage(named: "eggsBackground")
-            let eggBrand1 = Brand(name: "EggsRUs", price: "$3.94/dz", discount: "Buy 1 Get 1")
-            let eggBrand2 = Brand(name: "Luceme Organic", price: "$5.94/dz", discount: nil)
-            let eggBrands = [eggBrand1, eggBrand2]
-            let eggs = Item(name: "Eggs", brands: eggBrands, image: eggsImage!)
-
-            let eggsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            eggsVC.type = eggs
-            self.show(eggsVC, sender: self)
-            break
-        case 2: print("Cheese")
-            let cheeseImage = UIImage(named: "cheeseBackground")
-            let cheeseBrand1 = Brand(name: "Le Chatelain", price: "$6.93/lb", discount: nil)
-            let cheeseBrand2 = Brand(name: "Sargento Cheddar", price: "$3.94/lb", discount: "20% off")
-            let cheeseBrands = [cheeseBrand1, cheeseBrand2]
-            let cheese = Item(name: "Cheese", brands: cheeseBrands, image: cheeseImage!)
-
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = cheese
-            self.show(itemVC, sender: self)
-
-        //when Button2 is clicked...
-            break
-        case 3: print("Pizza")
-            let pizzaImage = UIImage(named: "pizzaBackground")
-            let pizzaBrand1 = Brand(name: "DiGiorno", price: "$11.93/16in Pie", discount: nil)
-            let pizzaBrand2 = Brand(name: "Freshetta", price: "$9.21/14in Pie", discount: nil)
-            let pizzaBrand3 = Brand(name: "Hot Pockets", price: "$4.94/4-pack", discount: "Buy 2 Get 1 Free")
-            let pizzaBrands = [pizzaBrand1, pizzaBrand2, pizzaBrand3]
-
-            let pizza = Item(name: "Pizza", brands: pizzaBrands, image: pizzaImage!)
-
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = pizza
-            self.show(itemVC, sender: self)//when Button3 is clicked...
-            break
-        case 4: print("Chicken")
-            let chickenImage = UIImage(named: "frozenChickenBackground")
-            let chicken1 = Brand(name: "Tyson", price: "$18.43/40-pieces", discount: "15% off")
-            let chicken2 = Brand(name: "Sanderson Homes", price: "$11.20/20-pieces", discount: nil)
-            let chicken3 = Brand(name: "Pilgrim's", price: "$10.94/20-pieces", discount: "10% off")
-            let chicken4 = Brand(name: "Perdue", price: "9.94/10-pieces", discount: nil)
-
-            let chickenBrands = [chicken1, chicken2, chicken3, chicken4]
-            let chicken = Item(name: "Frozen Chicken", brands: chickenBrands, image: chickenImage!)
-
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = chicken
-            self.show(itemVC, sender: self)
-            break
-        case 5: print("Bread")
-            let breadImage = UIImage(named: "breadBackground")
-            let bread1 = Brand(name: "Wonderbread", price: "$3.84/20oz", discount: nil)
-            let bread2 = Brand(name: "Grupo Bimbo", price: "$4.04/24oz", discount: "15% off")
-            let bread3 = Brand(name: "Nature's Grain", price: "$5.43/20oz", discount: nil)
-            let bread4 = Brand(name: "Alvarado Baguettes", price: "$7.89/24oz", discount: nil)
-
-            let breadBrands = [bread1, bread2, bread3, bread4]
-            let bread = Item(name: "Bread", brands: breadBrands, image: breadImage!)
-
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = bread
-            self.show(itemVC, sender: self)
-        //when Button3 is clicked...
-            break
-
-        case 6: print("Lemons")
-            let lemonImage = UIImage(named: "lemonsBackground")
-            let lemons1 = Brand(name: "CVS Lemons", price: "$1.00/unit", discount: nil)
-            let lemonBrands = [lemons1]
-            let lemons = Item(name: "Lemons", brands:  lemonBrands, image: lemonImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = lemons
-            self.show(itemVC, sender: self)
-
-        case 7: print("carrots")
-            let carrotImage = UIImage(named: "carrotsBackground")
-            let carrots1 = Brand(name: "Green Giant Baby Cut", price: "$1.49/lb", discount: nil)
-            let carrotBrands = [carrots1]
-            let carrots = Item(name: "Carrots", brands:  carrotBrands, image: carrotImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = carrots
-            self.show(itemVC, sender: self)
-
-        case 8: print("burgers")
-            let burgerImage = UIImage(named: "burgerBackground")
-            let burger1 = Brand(name: "CVS Beef Patties", price: "$12.93/20-pack", discount: nil)
-            let burger2 = Brand(name: "Sam's Choice Angus Beef", price: "$8.98/2lb", discount: nil)
-            let burgerBrands = [burger1, burger2]
-            let burger = Item(name: "Beef Patties", brands:  burgerBrands, image: burgerImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = burger
-            self.show(itemVC, sender: self)
-
-        case 9: print("quesadillas")
-            let quesadillaImage = UIImage(named: "quesadillaBackground")
-            let quesadilla1 = Brand(name: "Smart Ones Chicken & Cheese", price: "$2.58/2-pack", discount: "20% Off")
-            let quesadilla2 = Brand(name: "Smart Ones Steak & Cheese", price: "$3.28/2-pack", discount: "20% Off")
-            let quesadillaBrands = [quesadilla1, quesadilla2]
-            let quesadilla = Item(name: "Quesadillas", brands:  quesadillaBrands, image: quesadillaImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = quesadilla
-            self.show(itemVC, sender: self)
-
-        case 10: print("pasta")
-            let pastaImage = UIImage(named: "pastaBackground")
-            let pasta1 = Brand(name: "Kraft Mac n' Cheese", price: "$13.93/6-pack", discount: "Buy 2 Get 1 Free")
-            let pasta2 = Brand(name: "Barilla Penne", price: "$3.19/lb", discount: nil)
-            let pasta3 = Brand(name: "DeCecco Rigatoni", price: "$3.41/lb", discount: nil)
-            let pasta4 = Brand(name: "San Giorgio Spagetti", price: "$2.95/lb", discount: "10% Off")
-            let pastaBrands = [pasta1, pasta2, pasta3, pasta4]
-            let pasta = Item(name: "Pasta", brands:  pastaBrands, image: pastaImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = pasta
-            self.show(itemVC, sender: self)
-
-        case 11: print("fish")
-            let fishImage = UIImage(named: "fishBackground")
-            let fish1 = Brand(name: "CVS Alaskan Salmon", price: "$7.93/lb", discount: nil)
-            let fishBrands = [fish1]
-            let fish = Item(name: "Fish", brands:  fishBrands, image: fishImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = fish
-            self.show(itemVC, sender: self)
-
-        case 12: print("ice cream")
-
-            let iceCreamImage = UIImage(named: "iceCreamBackground")
-            let iceCream1 = Brand(name: "Halo Top Vanilla", price: "$4.55/pint", discount: nil)
-            let iceCream2 = Brand(name: "Halo Top Mint Chip", price: "$4.55/pint", discount: nil)
-            let iceCream3 = Brand(name: "Halo Top Cookie Dough", price: "$4.55/pint", discount: nil)
-            let iceCream4 = Brand(name: "Halo Top Chocolate", price: "$4.55/pint", discount: nil)
-            let iceCream5 = Brand(name: "Ben n Jerry's Phish Food", price: "$3.94/pint", discount: nil)
-            let iceCreamBrands = [iceCream1, iceCream2, iceCream3, iceCream4, iceCream5]
-            let iceCream = Item(name: "Ice  Cream", brands:  iceCreamBrands, image: iceCreamImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = iceCream
-            self.show(itemVC, sender: self)
-
-        case 13: print("steak")
-            let steakImage = UIImage(named: "steakBackground")
-            let steak1 = Brand(name: "CVS Rib-Eye", price: "$7.93/lb", discount: nil)
-            let steak2 = Brand(name: "CVS NY Strip", price: "$9.93/lb", discount: nil)
-            let steak3 = Brand(name: "CVS Filet Mignon", price: "$11.25/lb", discount: nil)
-
-            let steakBrands = [steak1, steak2, steak3]
-            let steak = Item(name: "Steak", brands:  steakBrands, image: steakImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = steak
-            self.show(itemVC, sender: self)
-
-        case 14: print("brocolli")
-            let brocolliImage = UIImage(named: "broccoliBackground")
-            let broccoli1 = Brand(name: "CVS Brocolli", price: "$5.44/lb", discount: nil)
-            let brocolliBrands = [broccoli1]
-            let brocolli = Item(name: "Broccoli", brands:  brocolliBrands, image: brocolliImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = brocolli
-            self.show(itemVC, sender: self)
-        case 15: print("corn")
-            let cornImage = UIImage(named: "cornBackground")
-            let corn1 = Brand(name: "CVS Corn on the Cob", price: "$1.50/ea", discount: "3 for $4.00")
-            let cornBrands = [corn1]
-            let corn = Item(name: "Corn", brands:  cornBrands, image: cornImage!)
-            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            itemVC.type = corn
-            self.show(itemVC, sender: self)
-        default: print("Other...")
         }
     }
 
@@ -341,7 +92,23 @@ class MapViewController: UIViewController {
         }
     }
 
+    @IBAction func endTripPressed(_ sender: Any) {
+        //Show goodbye vc
+    }
+
+    //To add an item to grocery list and update map / path
+    func addItem(item: String) {
+         groceryList.append(item)
+         guard let sublayers = mapView.layer.sublayers else { return }
+         for layer in sublayers {
+            layer.removeFromSuperlayer()
+         }
+         drawPath(items: groceryList)
+         setupButtons()
+    }
+
     func indexUpdated(){
+        if currIndex >= groceryList.count  {return}
         let currItem = groceryList[currIndex]
         currItemLabel.text = currItem
 
@@ -429,12 +196,21 @@ class MapViewController: UIViewController {
         }
     }
 
-    func drawDottedLine(start p0: CGPoint, end p1: CGPoint, view: UIView) {
+    func drawDottedLine(start p0: CGPoint, end p1: CGPoint, mapview: UIView) {
 
+        //self.shapeLayer?.removeFromSuperlayer()
+        /*
+        let path = UIBezierPath()
+        path.move(to: p0)
+        path.addLine(to: p1)
+        path.close()
+         */
         let shapeLayer = CAShapeLayer()
-        shapeLayer.fillColor = colorArray[colorIndex%4].cgColor
-        shapeLayer.strokeColor = colorArray[colorIndex%4].cgColor
-        shapeLayer.lineWidth = 4
+        shapeLayer.fillColor = colorArray[colorIndex%6].cgColor
+        shapeLayer.strokeColor = colorArray[colorIndex%6].cgColor
+        //shapeLayer.fillColor = customRed.cgColor
+        //shapeLayer.strokeColor = customRed.cgColor
+        shapeLayer.lineWidth = 2
         shapeLayer.opacity = 0.5
         shapeLayer.lineDashPattern = [7, 3] // 7 is the length of dash, 3 is length of the gap.
 
@@ -442,17 +218,15 @@ class MapViewController: UIViewController {
         path.addLines(between: [p0, p1])
         shapeLayer.path = path
 
-        // animate it
+        mapview.layer.addSublayer(shapeLayer)
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.fromValue = 0
-        animation.fromValue = 1
-
-
-        animation.duration = 10
+        animation.duration = 2
         shapeLayer.add(animation, forKey: "MyAnimation")
-        CATransaction.begin()
-        view.layer.addSublayer(shapeLayer)
 
+        //view.layer.addSublayer(shapeLayer)
+
+        //self.shapeLayer = shapeLayer
         // save shape layer    }
 
     }
@@ -567,8 +341,10 @@ extension MapViewController {
 
         //get all vertices from item list
         for item in items {
-            if let vertex  = getVertex(for : item) {
-                vertices.append(vertex)
+            if let vertex = getVertex(for : item) {
+                if !vertices.contains(vertex) {
+                    vertices.append(vertex)
+                }
             }
         }
 
@@ -608,12 +384,17 @@ extension MapViewController {
 
 
     func drawShortestPath(src: Vertex, dst: Vertex) {
+
+        //for edges in mst.edges(from: <#T##Vertex<CGPoint>#>)
+
+        
+
         if let edges = adjacencyList.breadthFirstSearch(from: src, to: dst) {
             for edge in edges {
                // print("edge weight: \(edge.weight)")
                 let srcPoint = edge.source.data
                 let dstPoint = edge.destination.data
-                drawDottedLine(start: srcPoint, end: dstPoint, view: mapView)
+                drawDottedLine(start: srcPoint, end: dstPoint, mapview: mapView)
                // print("drawing path start to item 1")
                // print("\(edge.source) -> \(edge.destination)")
             }
@@ -653,6 +434,254 @@ extension MapViewController {
         adjacencyList.add(from: n8, to: n5, weight: Double(c5.x - c8.x))
     }
 
+    //func getButtonFromString(str: String, array: [UIButton])
+    func setupButtons(){
+
+        //make all items lowercase
+        var temp = [String]()
+        for str in groceryList {
+            temp.append(str.lowercased())
+        }
+        groceryList = temp
+
+        //hide buttons
+        print("printing buttons")
+        for btn in btnArray {
+            print("button tag: \(btn.tag)")
+            //print("\(btn.tag) \(btn.frame.minX), \(btn.frame.minY)")
+            btn.addTarget(self,action:#selector(buttonClicked), for:.touchUpInside)
+            btn.isHidden = true
+        }
+
+        //unhide buttons for items in list
+        let itemList = groceryList
+        for item in itemList {
+            print(item)
+            switch (item) {
+            case "eggs":
+                eggsBtn.isHidden = false
+                break
+            case "corn", "canned corn", "corn on the cob":
+                cornBtn.isHidden = false
+                break
+            case "cheese", "parmesan", "cheddar":
+                cheeseBtn.isHidden = false
+                break
+            case "broccoli":
+                brocolliBtn.isHidden = false
+                break
+            case "lemon", "lemons":
+                lemonBtn.isHidden = false
+                break
+            case "carrot", "carrots":
+                carrotBtn.isHidden = false
+                break
+            case "pizza", "frozen pizza", "cheese pizza", "pepperoni pizza":
+                pizzaBtn.isHidden = false
+                break
+            case "burger", "burgers", "patties":
+                burgerBtn.isHidden = false
+                break
+            case "quesadilla", "quesadillas":
+                quesadillaBtn.isHidden = false
+                break
+            case "icecream", "ice cream":
+                iceCreamBtn.isHidden = false
+                break
+            case "chicken", "frozen chicken":
+                chickenBtn.isHidden = false
+                break
+            case "fish", "frozen fish":
+                fishBtn.isHidden = false
+                break
+            case "steak", "beef":
+                steakBtn.isHidden = false
+                break
+            case "pasta", "noodles":
+                print("unhiding pasta")
+                pastaBtn.isHidden = false
+                break
+            case "bread", "baguette", "bread roll", "bread rolls":
+                breadBtn.isHidden = false
+                break
+            default:
+                print("item does not match any button")
+                break
+            }
+        }
+    }
+
+    //create item screens as needed
+    @objc func buttonClicked(sender:UIButton)
+    {
+        switch sender.tag
+        {
+        case 1:
+            let eggsImage = UIImage(named: "eggsBackground")
+            let eggBrand1 = Brand(name: "EggsRUs", price: "$3.94/dz", discount: "Buy 1 Get 1")
+            let eggBrand2 = Brand(name: "Luceme Organic", price: "$5.94/dz", discount: nil)
+            let eggBrands = [eggBrand1, eggBrand2]
+            let eggs = Item(name: "Eggs", brands: eggBrands, image: eggsImage!)
+
+            let eggsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            eggsVC.type = eggs
+            self.show(eggsVC, sender: self)
+            break
+        case 2:
+            let cheeseImage = UIImage(named: "cheeseBackground")
+            let cheeseBrand1 = Brand(name: "Le Chatelain", price: "$6.93/lb", discount: nil)
+            let cheeseBrand2 = Brand(name: "Sargento Cheddar", price: "$3.94/lb", discount: "20% off")
+            let cheeseBrands = [cheeseBrand1, cheeseBrand2]
+            let cheese = Item(name: "Cheese", brands: cheeseBrands, image: cheeseImage!)
+
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = cheese
+            self.show(itemVC, sender: self)
+            break
+        case 3:
+            let pizzaImage = UIImage(named: "pizzaBackground")
+            let pizzaBrand1 = Brand(name: "DiGiorno", price: "$11.93/16in Pie", discount: nil)
+            let pizzaBrand2 = Brand(name: "Freshetta", price: "$9.21/14in Pie", discount: nil)
+            let pizzaBrand3 = Brand(name: "Hot Pockets", price: "$4.94/4-pack", discount: "Buy 2 Get 1 Free")
+            let pizzaBrands = [pizzaBrand1, pizzaBrand2, pizzaBrand3]
+
+            let pizza = Item(name: "Pizza", brands: pizzaBrands, image: pizzaImage!)
+
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = pizza
+            self.show(itemVC, sender: self)//when Button3 is clicked...
+            break
+        case 4:
+            let chickenImage = UIImage(named: "frozenChickenBackground")
+            let chicken1 = Brand(name: "Tyson", price: "$18.43/40-pieces", discount: "15% off")
+            let chicken2 = Brand(name: "Sanderson Homes", price: "$11.20/20-pieces", discount: nil)
+            let chicken3 = Brand(name: "Pilgrim's", price: "$10.94/20-pieces", discount: "10% off")
+            let chicken4 = Brand(name: "Perdue", price: "9.94/10-pieces", discount: nil)
+
+            let chickenBrands = [chicken1, chicken2, chicken3, chicken4]
+            let chicken = Item(name: "Frozen Chicken", brands: chickenBrands, image: chickenImage!)
+
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = chicken
+            self.show(itemVC, sender: self)
+            break
+        case 5:
+            let breadImage = UIImage(named: "breadBackground")
+            let bread1 = Brand(name: "Wonderbread", price: "$3.84/20oz", discount: nil)
+            let bread2 = Brand(name: "Grupo Bimbo", price: "$4.04/24oz", discount: "15% off")
+            let bread3 = Brand(name: "Nature's Grain", price: "$5.43/20oz", discount: nil)
+            let bread4 = Brand(name: "Alvarado Baguettes", price: "$7.89/24oz", discount: nil)
+
+            let breadBrands = [bread1, bread2, bread3, bread4]
+            let bread = Item(name: "Bread", brands: breadBrands, image: breadImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = bread
+            self.show(itemVC, sender: self)
+            break
+        case 6:
+            let lemonImage = UIImage(named: "lemonsBackground")
+            let lemons1 = Brand(name: "CVS Lemons", price: "$1.00/unit", discount: nil)
+            let lemonBrands = [lemons1]
+            let lemons = Item(name: "Lemons", brands:  lemonBrands, image: lemonImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = lemons
+            self.show(itemVC, sender: self)
+            break
+        case 7:
+            let carrotImage = UIImage(named: "carrotsBackground")
+            let carrots1 = Brand(name: "Green Giant Baby Cut", price: "$1.49/lb", discount: nil)
+            let carrotBrands = [carrots1]
+            let carrots = Item(name: "Carrots", brands:  carrotBrands, image: carrotImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = carrots
+            self.show(itemVC, sender: self)
+        case 8:
+            let burgerImage = UIImage(named: "burgerBackground")
+            let burger1 = Brand(name: "CVS Beef Patties", price: "$12.93/20-pack", discount: nil)
+            let burger2 = Brand(name: "Sam's Choice Angus Beef", price: "$8.98/2lb", discount: nil)
+            let burgerBrands = [burger1, burger2]
+            let burger = Item(name: "Beef Patties", brands:  burgerBrands, image: burgerImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = burger
+            self.show(itemVC, sender: self)
+            break
+        case 9:
+            let quesadillaImage = UIImage(named: "quesadillaBackground")
+            let quesadilla1 = Brand(name: "Smart Ones Chicken & Cheese", price: "$2.58/2-pack", discount: "20% Off")
+            let quesadilla2 = Brand(name: "Smart Ones Steak & Cheese", price: "$3.28/2-pack", discount: "20% Off")
+            let quesadillaBrands = [quesadilla1, quesadilla2]
+            let quesadilla = Item(name: "Quesadillas", brands:  quesadillaBrands, image: quesadillaImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = quesadilla
+            self.show(itemVC, sender: self)
+            break
+        case 10:
+            let pastaImage = UIImage(named: "pastaBackground")
+            let pasta1 = Brand(name: "Kraft Mac n' Cheese", price: "$13.93/6-pack", discount: "Buy 2 Get 1 Free")
+            let pasta2 = Brand(name: "Barilla Penne", price: "$3.19/lb", discount: nil)
+            let pasta3 = Brand(name: "DeCecco Rigatoni", price: "$3.41/lb", discount: nil)
+            let pasta4 = Brand(name: "San Giorgio Spagetti", price: "$2.95/lb", discount: "10% Off")
+            let pastaBrands = [pasta1, pasta2, pasta3, pasta4]
+            let pasta = Item(name: "Pasta", brands:  pastaBrands, image: pastaImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = pasta
+            self.show(itemVC, sender: self)
+            break
+        case 11:
+            let fishImage = UIImage(named: "fishBackground")
+            let fish1 = Brand(name: "CVS Alaskan Salmon", price: "$7.93/lb", discount: nil)
+            let fishBrands = [fish1]
+            let fish = Item(name: "Fish", brands:  fishBrands, image: fishImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = fish
+            self.show(itemVC, sender: self)
+            break
+        case 12:
+            let iceCreamImage = UIImage(named: "iceCreamBackground")
+            let iceCream1 = Brand(name: "Halo Top Vanilla", price: "$4.55/pint", discount: nil)
+            let iceCream2 = Brand(name: "Halo Top Mint Chip", price: "$4.55/pint", discount: nil)
+            let iceCream3 = Brand(name: "Halo Top Cookie Dough", price: "$4.55/pint", discount: nil)
+            let iceCream4 = Brand(name: "Halo Top Chocolate", price: "$4.55/pint", discount: nil)
+            let iceCream5 = Brand(name: "Ben n Jerry's Phish Food", price: "$3.94/pint", discount: nil)
+            let iceCreamBrands = [iceCream1, iceCream2, iceCream3, iceCream4, iceCream5]
+            let iceCream = Item(name: "Ice  Cream", brands:  iceCreamBrands, image: iceCreamImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = iceCream
+            self.show(itemVC, sender: self)
+            break
+        case 13:
+            let steakImage = UIImage(named: "steakBackground")
+            let steak1 = Brand(name: "CVS Rib-Eye", price: "$7.93/lb", discount: nil)
+            let steak2 = Brand(name: "CVS NY Strip", price: "$9.93/lb", discount: nil)
+            let steak3 = Brand(name: "CVS Filet Mignon", price: "$11.25/lb", discount: nil)
+
+            let steakBrands = [steak1, steak2, steak3]
+            let steak = Item(name: "Steak", brands:  steakBrands, image: steakImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = steak
+            self.show(itemVC, sender: self)
+            break
+        case 14:
+            let brocolliImage = UIImage(named: "broccoliBackground")
+            let broccoli1 = Brand(name: "CVS Brocolli", price: "$5.44/lb", discount: nil)
+            let brocolliBrands = [broccoli1]
+            let brocolli = Item(name: "Broccoli", brands:  brocolliBrands, image: brocolliImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = brocolli
+            self.show(itemVC, sender: self)
+            break
+        case 15:
+            let cornImage = UIImage(named: "cornBackground")
+            let corn1 = Brand(name: "CVS Corn on the Cob", price: "$1.50/ea", discount: "3 for $4.00")
+            let cornBrands = [corn1]
+            let corn = Item(name: "Corn", brands:  cornBrands, image: cornImage!)
+            let itemVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            itemVC.type = corn
+            self.show(itemVC, sender: self)
+            break
+        default: print("Default called for button selection")
+        }
+    }
 }
 
 

@@ -65,7 +65,7 @@ class ItemViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch (indexPath.row) {
-            case 0: return 136
+            case 0: return 180
             case 1: return 44
             default: return 80
         }
