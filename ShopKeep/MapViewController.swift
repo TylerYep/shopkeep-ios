@@ -198,13 +198,6 @@ class MapViewController: UIViewController {
 
     func drawDottedLine(start p0: CGPoint, end p1: CGPoint, mapview: UIView) {
 
-        //self.shapeLayer?.removeFromSuperlayer()
-        /*
-        let path = UIBezierPath()
-        path.move(to: p0)
-        path.addLine(to: p1)
-        path.close()
-         */
         let shapeLayer = CAShapeLayer()
         shapeLayer.fillColor = colorArray[colorIndex%6].cgColor
         shapeLayer.strokeColor = colorArray[colorIndex%6].cgColor
@@ -224,111 +217,9 @@ class MapViewController: UIViewController {
         animation.duration = 2
         shapeLayer.add(animation, forKey: "MyAnimation")
 
-        //view.layer.addSublayer(shapeLayer)
-
-        //self.shapeLayer = shapeLayer
-        // save shape layer    }
-
     }
 
 }
-
-/*
-class GridView: UIView
-{
-    private var path = UIBezierPath()
-
-    fileprivate func drawGrid()
-    {
-
-        /*
-        path = UIBezierPath()
-        path.lineWidth = 5.0
-        let blackColor = UIColor.black
-        blackColor.setStroke()
-        path.stroke()
-
-        //All the way up right-most aisle
-        let start1 = CGPoint(x: bounds.width - 35, y:bounds.height - 25)
-        let end1 = CGPoint(x: bounds.width - 35, y: 25)
-        path.move(to: start1)
-        path.addLine(to: end1)
-
-        //To Pizza
-        let start2 = CGPoint(x: bounds.width - 35, y: 25)
-        let end2 = CGPoint(x: bounds.width - 182.5, y: 25)
-        path.move(to: start2)
-        path.addLine(to: end2)
-
-        //To burgers & quesadillas (ends at bottom of aisle 13/14)
-        let start3 = CGPoint(x: bounds.width - 180, y: 25)
-        let end3 = CGPoint(x: bounds.width - 180, y: bounds.height/2 - 35)
-        path.move(to: start3)
-        path.addLine(to: end3)
-
-        //To ice cream
-        let start4 = CGPoint(x: bounds.width - 180, y: bounds.height/2 - 35)
-        let end4 = CGPoint(x: bounds.width - 180, y: bounds.height/2 + 70)
-        path.move(to: start4)
-        path.addLine(to: end4)
-
-        //across aisle 12-13
-        let start5 = CGPoint(x: bounds.width - 180, y: bounds.height/2 - 35)
-        let end5 = CGPoint(x: bounds.width - 255, y: bounds.height/2 - 35)
-        path.move(to: start5)
-        path.addLine(to: end5)
-
-        //to chicken (from end5)
-        let start6a = CGPoint(x: bounds.width - 255, y: bounds.height/2 - 37.5)
-        let end6a = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 20)
-        path.move(to: start6a)
-        path.addLine(to: end6a)
-
-        //to fish (from chicken)
-        let start6b = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 20)
-        let end6b = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 70)
-        path.move(to: start6b)
-        path.addLine(to: end6b)
-
-        //to steak (from fish)
-        let start6c = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 70)
-        let end6c = CGPoint(x: bounds.width - 255, y: bounds.height/2 + 138)
-        path.move(to: start6c)
-        path.addLine(to: end6c)
-
-        //To pasta (across aisle 10-11)
-        let start7 = CGPoint(x: bounds.width - 255, y: bounds.height/2 - 35)
-        let end7 = CGPoint(x: bounds.width - 300, y: bounds.height/2 - 35)
-        path.move(to: start7)
-        path.addLine(to: end7)
-
-        //To bread (from pasta)
-        let start8a = CGPoint(x: bounds.width - 300, y: bounds.height/2 - 35)
-        let end8a = CGPoint(x: bounds.width - 335, y: bounds.height/2 - 35)
-        path.move(to: start8a)
-        path.addLine(to: end8a)
-        let start8b = CGPoint(x: bounds.width - 335, y: bounds.height/2 - 37.5)
-        let end8b = CGPoint(x: bounds.width - 335, y: bounds.height/2 + 110)
-        path.move(to: start8b)
-        path.addLine(to: end8b)
-
-
-        //Close the path.
-        path.close()
-    */
-    }
-
-    override func draw(_ rect: CGRect)
-    {
-        drawGrid()
-
-        // Specify a border (stroke) color.
-        customRed.setStroke()
-        path.stroke()
-        
-    }
-}
-*/
 
 extension MapViewController {
 
@@ -685,55 +576,3 @@ extension MapViewController {
 }
 
 
-/*
- switch (currItem) {
- case completeItemList[0]:
- updateBtnSize(selected: eggsBtn)
- break
- case completeItemList[1]:
- updateBtnSize(selected: cornBtn)
- break
- case completeItemList[2]:
- updateBtnSize(selected: cheeseBtn)
- break
- case completeItemList[3]:
- updateBtnSize(selected: brocolliBtn)
- break
- case completeItemList[4]:
- updateBtnSize(selected: lemonBtn)
- break
- case completeItemList[5]:
- updateBtnSize(selected: carrotBtn)
- break
- case completeItemList[6]:
- updateBtnSize(selected: pizzaBtn)
- break
- case completeItemList[7]:
- updateBtnSize(selected: burgerBtn)
- break
- case completeItemList[8]:
- updateBtnSize(selected: quesadillaBtn)
- break
- case completeItemList[9]:
- updateBtnSize(selected: iceCreamBtn)
- break
- case completeItemList[10]:
- updateBtnSize(selected: chickenBtn)
- break
- case completeItemList[11]:
- updateBtnSize(selected: fishBtn)
- break
- case completeItemList[12]:
- updateBtnSize(selected: steakBtn)
- break
- case completeItemList[13]:
- updateBtnSize(selected: pastaBtn)
- break
- case completeItemList[14]:
- updateBtnSize(selected: breadBtn)
- break
- default:
- updateBtnSize(selected: nil)
- break
- }
- */

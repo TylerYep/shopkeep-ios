@@ -132,29 +132,29 @@ func getVertex(for item: String)->Vertex?  {
         return eggsCoord
     case "pizza", "frozen pizza", "cheese pizza", "pepperoni pizza":
         return pizzaCoord
-    case "burger", "burgers":
+    case "burger", "burgers", "patties", "hamburgers", "hamburger", "cheeseburger", "cheeseburgers":
         return burgerCoord
     case "quesadilla", "quesadillas":
         return quesadillaCoord
-    case "icecream", "ice cream":
+    case "icecream", "ice cream", "halo top", "ben n jerry's":
         return iceCreamCoord
-    case "chicken", "frozen chicken":
+    case "chicken", "frozen chicken", "roasted chicken", "drumsticks":
         return chickenCoord
     case "lemon", "lemons":
         return lemonCoord
-    case "carrot", "carrots":
+    case "carrot", "carrots", "baby carrots":
         return carrotCoord
-    case "pasta", "noodles":
+    case "pasta", "noodles", "spagetti":
         return pastaCoord
-    case "fish", "frozen fish":
+    case "fish", "frozen fish", "salmon", "alaskan salmon":
         return fishCoord
-    case "steak", "beef":
+    case "steak", "beef", "ny strip", "angus":
         return steakCoord
-    case "bread", "baguette", "bread roll", "bread rolls":
+    case "bread", "baguette", "bread roll", "bread rolls", "sourdough", "wholewheat", "white bread":
         return breadCoord
-    case "corn", "canned corn", "corn on the cob":
+    case "corn", "canned corn", "corn on the cob", "mexican street corn":
         return cornCoord
-    case "cheese", "parmesan", "cheddar":
+    case "cheese", "parmesan", "cheddar", "asiago":
         return cheeseCoord
     case "broccoli":
         return broccoliCoord
