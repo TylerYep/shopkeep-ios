@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="61.600000000000001" y="56.221889055472268"/>
         </scene>
-        <!--List View Controller-->
+        <!--Add Items-->
         <scene sceneID="BZc-df-Ctm">
             <objects>
-                <viewController id="y94-l6-EEg" customClass="ListViewController" customModule="ShopKeep" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add Items" id="y94-l6-EEg" customClass="ListViewController" customModule="ShopKeep" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4NZ-nV-tfz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,7 +160,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="wwk-Is-OLr"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Dqr-UE-9aL"/>
+                    <navigationItem key="navigationItem" title="Add Items" id="Dqr-UE-9aL"/>
                     <connections>
                         <outlet property="itemTableView" destination="OPD-M4-YuS" id="BlS-qs-he5"/>
                         <outlet property="itemView" destination="YBN-nr-ijW" id="K9c-1N-p2c"/>
@@ -172,10 +172,10 @@
             </objects>
             <point key="canvasLocation" x="2005.5999999999999" y="54.422788605697157"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Find Items-->
         <scene sceneID="xpC-Zf-16P">
             <objects>
-                <viewController id="a7w-ho-Vnw" customClass="MapViewController" customModule="ShopKeep" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Find Items" id="a7w-ho-Vnw" customClass="MapViewController" customModule="ShopKeep" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pxd-PJ-VBm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
