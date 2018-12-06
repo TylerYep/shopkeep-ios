@@ -74,6 +74,21 @@
             </objects>
             <point key="canvasLocation" x="61.600000000000001" y="56.221889055472268"/>
         </scene>
+        <!--Get Expert Help-->
+        <scene sceneID="GIT-MV-IJ5">
+            <objects>
+                <viewController title="Get Expert Help" id="neL-hK-HsG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kVe-8X-gyn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9zI-oZ-I1w"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qsi-xP-et9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2006" y="-619"/>
+        </scene>
         <!--Add Items-->
         <scene sceneID="BZc-df-Ctm">
             <objects>
@@ -160,7 +175,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="wwk-Is-OLr"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Items" id="Dqr-UE-9aL"/>
+                    <navigationItem key="navigationItem" title="Add Items" id="Dqr-UE-9aL">
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="5QR-j0-hBj">
+                            <connections>
+                                <segue destination="neL-hK-HsG" kind="show" id="3aV-Dr-9zA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="itemTableView" destination="OPD-M4-YuS" id="BlS-qs-he5"/>
                         <outlet property="itemView" destination="YBN-nr-ijW" id="K9c-1N-p2c"/>
