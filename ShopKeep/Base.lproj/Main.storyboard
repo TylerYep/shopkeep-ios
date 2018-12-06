@@ -156,6 +156,9 @@
                                 <state key="normal" title="Ask Expert">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="callButtonPressed:" destination="neL-hK-HsG" eventType="touchUpInside" id="uQR-Rs-2Ic"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

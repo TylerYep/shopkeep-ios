@@ -40,4 +40,16 @@ class HelpViewController: UIViewController {
 
     }
     
+    @IBAction func callButtonPressed(_ sender: Any) {
+        facetime(phoneNumber: "3106252562")
+    }
+    
+    private func facetime(phoneNumber:String) {
+        if let facetimeURL:NSURL = NSURL(string: "facetime://\(phoneNumber)") {
+            let application:UIApplication = UIApplication.shared
+            if (application.canOpenURL(facetimeURL as URL)) {
+                application.openURL(facetimeURL as URL)
+            }
+        }
+    }
 }
