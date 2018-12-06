@@ -11,6 +11,7 @@ import UIKit
 public class ItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var itemTextField: UITextField!
+    @IBOutlet weak var stockLabel: UILabel!
     
     public func configure(text: String?, placeholder: String) {
         itemTextField.text = text
@@ -18,6 +19,8 @@ public class ItemTableViewCell: UITableViewCell {
         
         itemTextField.accessibilityValue = text
         itemTextField.accessibilityLabel = placeholder
+        
+        itemTextField.autocapitalizationType = .words
         
         itemTextField.returnKeyType = .done
     }

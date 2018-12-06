@@ -10,24 +10,17 @@ import UIKit
 import Speech
 
 class ListViewController: UIViewController,
-                          UITableViewDelegate, UITableViewDataSource,
-                          UITextFieldDelegate,
-                          SFSpeechRecognizerDelegate {
+    UITableViewDelegate, UITableViewDataSource,
+    UITextFieldDelegate {
     
     @IBOutlet weak var itemView: UIView!
     @IBOutlet weak var mapButton: UIButton!
-    @IBOutlet weak var penButton: UIButton!
-    @IBOutlet weak var micButton: UIButton!
+    @IBOutlet weak var stockButton: UIButton!
     @IBOutlet weak var itemTableView: UITableView!
     
-    let audioEngine = AVAudioEngine()
-    // let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
-    let request = SFSpeechAudioBufferRecognitionRequest()
-    var recognitionTask: SFSpeechRecognitionTask?
-    
     override func viewDidLoad() {
-
-//        self.requestSpeechAuthorization()
+        
+        //        self.requestSpeechAuthorization()
         
         // border
         itemView.layer.borderWidth = 1.0
@@ -39,8 +32,6 @@ class ListViewController: UIViewController,
         itemView.layer.shadowOpacity = 0.7
         itemView.layer.shadowRadius = 4.0
         
-        penButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-        micButton.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,6 +48,7 @@ class ListViewController: UIViewController,
         cell.selectionStyle = .none
         cell.configure(text: "", placeholder: "")
         cell.itemTextField.delegate = self
+        //        cell.stockLabel.text = "default"
         return cell
     }
     
@@ -65,72 +57,48 @@ class ListViewController: UIViewController,
         return true
     }
     
-    @IBAction func penButtonPressed(_ sender: Any) {
-        print("pen button pressed")
+    @IBAction func stockButtonPressed(_ sender: Any) {
+        
+        for cell in itemTableView.visibleCells as! [ItemTableViewCell] {
+            //            cell.stockLabel.text = "updated"
+            //do someting with the cell here.
+            guard var input = cell.itemTextField.text else {
+                print("nil input in table cell")
+                continue
+            }
+            if input.isEmpty { continue }
+            input = input.lowercased().trimmingCharacters(in: .whitespaces)
+            print(input)
+            if !input.isAlphanumeric() {
+                cell.stockLabel.text = "Unrecognized"
+                cell.stockLabel.textColor = .blue
+                print("Unrecognized")
+            } else if stockItems.contains(input) {
+                cell.stockLabel.text = "In Stock"
+                print("In Stock")
+            } else {
+                cell.stockLabel.text = "Out of Stock"
+                cell.stockLabel.textColor = .red
+                print("Out of Stock")
+            }
+        }
     }
     
-    @IBAction func micButtonPressed(_ sender: Any) {
-        print("mic button pressed")
-        // self.recordAndRecognizeSpeech()
+}
+
+extension String {
+    
+    func isAlphanumeric() -> Bool {
+        return self.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) == nil && self != ""
     }
     
-//    func recordAndRecognizeSpeech() {
-//        let node = audioEngine.inputNode
-//        let recordingFormat = node.outputFormat(forBus: 0)
-//        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {buffer, _ in
-//            self.request.append(buffer)
-//        }
-//        audioEngine.prepare()
-//        do {
-//            try audioEngine.start()
-//        } catch {
-//            print("There has been an audio engine error.")
-//            return
-//        }
-//        guard let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US")) else {
-//            print("Speech recognition is not supported for your current locale.")
-//            return
-//        }
-//        if !(recognizer.isAvailable) {
-//            print("Speech recognition is not currently available. Check back at a later time.")
-//            // Recognizer is not available right now
-//            return
-//        }
-//        recognitionTask = recognizer.recognitionTask(with: request, resultHandler: { result, error in
-//            if let result = result {
-//
-//                let bestString = result.bestTranscription.formattedString
-//                print("DEBUG: " + bestString)
-//
-//                var lastString: String = ""
-//                for segment in result.bestTranscription.segments {
-//                    let indexTo = bestString.index(bestString.startIndex, offsetBy: segment.substringRange.location)
-//                    // lastString = bestString.substring(from: indexTo)
-//                    lastString = String(bestString[indexTo...])
-//                }
-//                print("DEBUG: " + lastString)
-//                self.debugLabel.text = lastString
-//            } else if let error = error {
-//                print("There has been a speech recognition error.")
-//                print(error)
-//            }
-//        })
-//    }
-//
-//    func requestSpeechAuthorization() {
-//        SFSpeechRecognizer.requestAuthorization { authStatus in
-//            OperationQueue.main.addOperation {
-//                switch authStatus {
-//                case .authorized:
-//                    print("Speech authorized")
-//                case .denied:
-//                    print("User denied access to speech recognition")
-//                case .restricted:
-//                    print("Speech recognition restricted on this device")
-//                case .notDetermined:
-//                    print("Speech recognition not yet authorized")
-//                }
-//            }
-//        }
-//    }
+    func isAlphanumeric(ignoreDiacritics: Bool = false) -> Bool {
+        if ignoreDiacritics {
+            return self.range(of: "[^a-zA-Z0-9]", options: .regularExpression) == nil && self != ""
+        }
+        else {
+            return self.isAlphanumeric()
+        }
+    }
+    
 }

@@ -28,6 +28,17 @@ extension CGPoint: Hashable {
         return "\(x)\(y)".hashValue
     }
 }
+
+
+let stockItems : [String] = [ "eggs", "corn",
+                              "cheese", "broccoli",
+                              "lemon", "carrot",
+                              "pizza", "burger",
+                              "quesadilla", "icecream",
+                              "chicken", "fish",
+                              "steak", "pasta",
+                              "bread" ]
+
 let verticalMidpoint = screenHeight * (520/667) * (225 / 523)
 let horizontalMidpoint = screenWidth * (195/375)
 let bottomLine = screenHeight * (523/667) * (470/523)
