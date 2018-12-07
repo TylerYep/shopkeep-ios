@@ -9,20 +9,30 @@
 import UIKit
 
 public class ItemTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var itemTextField: UITextField!
     @IBOutlet weak var stockLabel: UILabel!
-    
-    public func configure(text: String?, placeholder: String) {
-        itemTextField.text = text
-        itemTextField.placeholder = placeholder
-        
-        itemTextField.accessibilityValue = text
-        itemTextField.accessibilityLabel = placeholder
-        
+
+    /*
+     func configure(text: String?, placeholder: String) {
+     itemTextField.text = text
+     itemTextField.placeholder = placeholder
+
+     itemTextField.accessibilityValue = text
+     itemTextField.accessibilityLabel = placeholder
+
+     itemTextField.autocapitalizationType = .words
+
+     itemTextField.returnKeyType = .done
+     }
+     */
+    func setCell(itemName: String?, stockString: String) {
+
+        itemTextField.text = itemName
+        stockLabel.text = stockString
         itemTextField.autocapitalizationType = .words
-        
         itemTextField.returnKeyType = .done
     }
-    
+
+
 }

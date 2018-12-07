@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ShopKeep" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="startVC" id="BYZ-38-t0r" customClass="ViewController" customModule="ShopKeep" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,18 +252,6 @@
                                     <segue destination="a7w-ho-Vnw" kind="show" identifier="segueToMap" id="Bvg-GR-fwu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bS8-SU-nT7">
-                                <rect key="frame" x="93" y="551" width="189" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.73725490199999999" green="0.14901960780000001" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <state key="normal" title="Check Stock">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="stockButtonPressed:" destination="y94-l6-EEg" eventType="touchUpInside" id="7hK-VM-OT7"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="wwk-Is-OLr"/>
@@ -279,7 +267,6 @@
                         <outlet property="itemTableView" destination="OPD-M4-YuS" id="BlS-qs-he5"/>
                         <outlet property="itemView" destination="YBN-nr-ijW" id="K9c-1N-p2c"/>
                         <outlet property="mapButton" destination="QBi-4K-4Zu" id="W29-BC-mzg"/>
-                        <outlet property="stockButton" destination="bS8-SU-nT7" id="nTa-Lx-lL6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kai-Ol-09Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -710,6 +697,7 @@
         <!--Navigation Controller-->
         <scene sceneID="lao-Kn-a7u">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvp-Ib-JCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3LI-m4-b3s" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Qj7-5t-4OU">
@@ -726,9 +714,8 @@
                         <segue destination="y94-l6-EEg" kind="relationship" relationship="rootViewController" id="4bb-cM-NOK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bvp-Ib-JCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066.4000000000001" y="54.422788605697157"/>
+            <point key="canvasLocation" x="1049" y="56"/>
         </scene>
     </scenes>
     <resources>

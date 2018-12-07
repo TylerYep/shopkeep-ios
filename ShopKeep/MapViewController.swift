@@ -93,6 +93,10 @@ class MapViewController: UIViewController {
     }
 
     @IBAction func endTripPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let startVC = storyboard.instantiateViewController(withIdentifier: "startVC")
+        self.present(startVC, animated: true, completion: nil)
+
         //Show goodbye vc
     }
 
@@ -259,8 +263,8 @@ extension MapViewController {
             }
         }
         groceryList = tempItems
-        currItemLabel.text = groceryList[0]
         groceryList.append("All items done!")
+        currItemLabel.text = groceryList[0]
         indexUpdated()
 
         for (index, vertex) in vertices.enumerated() {
