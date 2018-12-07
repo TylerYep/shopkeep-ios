@@ -59,7 +59,7 @@ class MapViewController: UIViewController {
         completeItemList = ["eggs", "corn", "corn on the cob", "cheese", "brocolli", "lemons", "carrot", "carrots", "pizza", "burger", "burgers", "quesadillas", "quesadilla", "icecream", "ice cream", "chicken", "fish", "steak", "beef", "pasta", "bread"]
         btnArray = [eggsBtn, cornBtn, cheeseBtn, brocolliBtn, lemonBtn, carrotBtn, pizzaBtn, burgerBtn, quesadillaBtn, iceCreamBtn, chickenBtn, fishBtn, steakBtn, pastaBtn, breadBtn]
         //groceryList = ["eggs", "corn", "lemon", "quesadilla"]
-        groceryList = ["eggs", "corn", "pizza", "bread"]
+        //groceryList = ["eggs", "corn", "pizza", "bread"]
         setupButtons()
 
         drawPath(items: groceryList)

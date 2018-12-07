@@ -20,6 +20,14 @@ class ListViewController: UIViewController,
     
     var inputItemList: [String] = []
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToMap" {
+            if let mapVC = segue.destination as? MapViewController {
+                mapVC.groceryList = inputItemList
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         
         //        self.requestSpeechAuthorization()
