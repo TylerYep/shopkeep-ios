@@ -34,7 +34,7 @@ let stockItems : [String] = [ "eggs", "corn",
                               "cheese", "broccoli",
                               "lemon", "carrot",
                               "pizza", "burger",
-                              "quesadilla", "icecream",
+                              "quesadilla", "ice cream",
                               "chicken", "fish",
                               "steak", "pasta",
                               "bread" ]

@@ -36,7 +36,7 @@ class HelpViewController: UIViewController {
         
         experienceLabel.text = "CVS Worker \n 5 years"
         
-        detailLabel.text = "Specialties: \n  \nHealth & Wellness, \nVegan Foods"
+        detailLabel.text = "Health & Wellness, \nVegan Foods"
 
     }
     
