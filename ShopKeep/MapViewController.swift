@@ -114,7 +114,7 @@ class MapViewController: UIViewController {
     func indexUpdated(){
         if currIndex >= groceryList.count  {return}
         let currItem = groceryList[currIndex]
-        currItemLabel.text = currItem
+        currItemLabel.text = currItem.capitalized
 
         if currIndex == 0 {
             prevItemBtn.isEnabled = false

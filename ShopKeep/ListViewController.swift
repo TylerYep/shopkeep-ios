@@ -89,6 +89,7 @@ class ListViewController: UIViewController,
         print(input)
         if !input.isAlphanumeric() {
             let newItem = ItemInput(itemName: input, stockString: "Unrecognized")
+            itemList.append(newItem)
             print("Unrecognized")
         } else if stockItems.contains(input) {
             let newItem = ItemInput(itemName: input, stockString: "In Stock")
