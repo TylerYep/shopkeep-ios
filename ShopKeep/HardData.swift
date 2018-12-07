@@ -30,14 +30,15 @@ extension CGPoint: Hashable {
 }
 
 
-let stockItems : [String] = [ "eggs", "corn",
-                              "cheese", "broccoli",
-                              "lemon", "carrot",
-                              "pizza", "burger",
-                              "quesadilla", "ice cream",
-                              "chicken", "fish",
-                              "steak", "pasta",
-                              "bread" ]
+let stockItems = ["eggs", "pizza", "frozen pizza", "cheese pizza", "pepperoni pizza", "burger", "burgers", "patties", "hamburgers", "hamburger", "cheeseburger", "cheeseburgers", "quesadilla", "quesadillas", "icecream", "ice cream", "halo top", "ben n jerry's", "chicken", "frozen chicken", "roasted chicken", "drumsticks", "lemon", "lemons",  "carrot", "carrots", "baby carrots", "pasta", "noodles", "spagetti", "fish", "frozen fish", "salmon", "alaskan salmon", "steak", "beef", "ny strip", "angus", "bread", "baguette", "bread roll", "bread rolls", "sourdough", "wholewheat", "white bread", "corn", "canned corn", "corn on the cob", "mexican street corn", "cheese", "parmesan", "cheddar", "asiago", "broccoli"]
+
+func storeContains(item: String)->Bool {
+    if stockItems.contains(item.lowercased()) {
+        return true
+    } else {
+        return false
+    }
+}
 
 let verticalMidpoint = screenHeight * (520/667) * (225 / 523)
 let horizontalMidpoint = screenWidth * (195/375)

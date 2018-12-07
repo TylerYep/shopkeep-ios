@@ -18,6 +18,8 @@ class ListViewController: UIViewController,
     @IBOutlet weak var stockButton: UIButton!
     @IBOutlet weak var itemTableView: UITableView!
     
+    var inputItemList: [String] = []
+    
     override func viewDidLoad() {
         
         //        self.requestSpeechAuthorization()
@@ -76,12 +78,15 @@ class ListViewController: UIViewController,
             } else if stockItems.contains(input) {
                 cell.stockLabel.text = "In Stock"
                 print("In Stock")
+                inputItemList.append(input)
             } else {
                 cell.stockLabel.text = "Out of Stock"
                 cell.stockLabel.textColor = .red
                 print("Out of Stock")
             }
         }
+        
+        print(inputItemList)
     }
     
 }
