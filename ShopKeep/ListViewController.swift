@@ -21,6 +21,9 @@ class ListViewController: UIViewController,
     var inputItemList: [String] = []
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        checkStock()
+        
         if segue.identifier == "segueToMap" {
             if let mapVC = segue.destination as? MapViewController {
                 mapVC.groceryList = inputItemList
@@ -67,7 +70,9 @@ class ListViewController: UIViewController,
         return true
     }
     
-    @IBAction func stockButtonPressed(_ sender: Any) {
+    private func checkStock() {
+        
+        inputItemList = []
         
         for cell in itemTableView.visibleCells as! [ItemTableViewCell] {
             //            cell.stockLabel.text = "updated"
@@ -95,6 +100,10 @@ class ListViewController: UIViewController,
         }
         
         print(inputItemList)
+    }
+    
+    @IBAction func stockButtonPressed(_ sender: Any) {
+        checkStock()
     }
     
 }
