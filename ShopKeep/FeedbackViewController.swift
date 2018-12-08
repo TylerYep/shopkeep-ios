@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedbackViewController: UIViewController {
+class FeedbackViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var headshotImageView: UIImageView!
     @IBOutlet weak var feedbackTextView: UITextView!
     
@@ -24,6 +24,15 @@ class FeedbackViewController: UIViewController {
         // textview
         feedbackTextView.layer.borderWidth = 1.0
         feedbackTextView.layer.borderColor = UIColor.gray.cgColor
+        feedbackTextView.returnKeyType = .done
+        feedbackTextView.delegate = self
+        
     }
-    
+  
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+        }
+        return true
+    }
 }
