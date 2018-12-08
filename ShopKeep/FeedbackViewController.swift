@@ -11,6 +11,7 @@ import UIKit
 class FeedbackViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var headshotImageView: UIImageView!
     @IBOutlet weak var feedbackTextView: UITextView!
+    @IBOutlet weak var ratingStackView: RatingController!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -213,26 +213,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black_empty_star" translatesAutoresizingMaskIntoConstraints="NO" id="l5j-3n-c77">
-                                <rect key="frame" x="210" y="286" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black_empty_star" translatesAutoresizingMaskIntoConstraints="NO" id="KJv-AE-phr">
-                                <rect key="frame" x="172" y="286" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black_empty_star" translatesAutoresizingMaskIntoConstraints="NO" id="eLQ-cV-DBW">
-                                <rect key="frame" x="96" y="286" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black_empty_star" translatesAutoresizingMaskIntoConstraints="NO" id="CAu-On-dGt">
-                                <rect key="frame" x="248" y="286" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="black_empty_star" translatesAutoresizingMaskIntoConstraints="NO" id="XMV-n6-eVI">
-                                <rect key="frame" x="134" y="286" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ber-pc-xBe">
                                 <rect key="frame" x="67" y="332" width="240" height="76"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -255,6 +235,32 @@
                                     <segue destination="a7w-ho-Vnw" kind="show" id="Fwk-Z3-fVI"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="top" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="TzT-X5-h5s" customClass="RatingController" customModule="ShopKeep" customModuleProvider="target">
+                                <rect key="frame" x="86" y="286" width="202" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8T-i8-zQU">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" image="black_empty_star"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fa0-JH-8pq">
+                                        <rect key="frame" x="43" y="0.0" width="30" height="30"/>
+                                        <state key="normal" image="black_empty_star"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHc-MZ-JDs">
+                                        <rect key="frame" x="86" y="0.0" width="30" height="30"/>
+                                        <state key="normal" image="black_empty_star"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X96-yd-RPh">
+                                        <rect key="frame" x="129" y="0.0" width="30" height="30"/>
+                                        <state key="normal" image="black_empty_star"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mlk-8v-3gZ">
+                                        <rect key="frame" x="172" y="0.0" width="30" height="30"/>
+                                        <state key="normal" image="black_empty_star"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="t6R-Pq-GCI"/>
@@ -262,6 +268,7 @@
                     <connections>
                         <outlet property="feedbackTextView" destination="ber-pc-xBe" id="o2A-Yw-2rU"/>
                         <outlet property="headshotImageView" destination="7iQ-oY-QYK" id="Xau-qH-4si"/>
+                        <outlet property="ratingStackView" destination="TzT-X5-h5s" id="crR-Uh-w51"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E49-KA-oaE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -807,7 +814,7 @@
     </scenes>
     <resources>
         <image name="base_cvs_map" width="415" height="563"/>
-        <image name="black_empty_star" width="590" height="590"/>
+        <image name="black_empty_star" width="30" height="30"/>
         <image name="breadIcon" width="65" height="76"/>
         <image name="broccoliIcon" width="100" height="108"/>
         <image name="burgerIcon" width="90" height="99"/>
