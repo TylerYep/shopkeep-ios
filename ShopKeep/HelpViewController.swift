@@ -51,5 +51,6 @@ class HelpViewController: UIViewController {
                 application.openURL(facetimeURL as URL)
             }
         }
+        print("call ends")
     }
 }

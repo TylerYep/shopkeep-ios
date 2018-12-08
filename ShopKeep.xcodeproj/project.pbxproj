@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8200993821A2280800FF281E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8200993721A2280800FF281E /* ListViewController.swift */; };
 		821C8D1821B9A4BA002D7FEB /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C8D1721B9A4BA002D7FEB /* HelpViewController.swift */; };
+		822E7C2721BC702300805B4C /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822E7C2621BC702300805B4C /* FeedbackViewController.swift */; };
 		82A20BB121A07E98009CB074 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A20BB021A07E98009CB074 /* AppDelegate.swift */; };
 		82A20BB621A07E98009CB074 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82A20BB421A07E98009CB074 /* Main.storyboard */; };
 		82A20BB821A07E99009CB074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82A20BB721A07E99009CB074 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		8200993721A2280800FF281E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		821C8D1721B9A4BA002D7FEB /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		822E7C2621BC702300805B4C /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		82A20BAD21A07E98009CB074 /* ShopKeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopKeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A20BB021A07E98009CB074 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82A20BB521A07E98009CB074 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				82A20BB021A07E98009CB074 /* AppDelegate.swift */,
 				82A20BB421A07E98009CB074 /* Main.storyboard */,
 				8ACCD4F621ABC76F002812BC /* ImageTableViewCell.swift */,
+				822E7C2621BC702300805B4C /* FeedbackViewController.swift */,
 				821C8D1721B9A4BA002D7FEB /* HelpViewController.swift */,
 				8200993721A2280800FF281E /* ListViewController.swift */,
 				8AF9E12C21B128F600E3D10D /* HardData.swift */,
@@ -308,6 +311,7 @@
 				8AAD58ED21B394320029F904 /* Graphable.swift in Sources */,
 				8AAD58EE21B394320029F904 /* Vertex.swift in Sources */,
 				8AF9E12D21B128F600E3D10D /* HardData.swift in Sources */,
+				822E7C2721BC702300805B4C /* FeedbackViewController.swift in Sources */,
 				82F1875821B03CF900235A4A /* ItemTableViewCell.swift in Sources */,
 				8200993821A2280800FF281E /* ListViewController.swift in Sources */,
 				82F1875621B03ABC00235A4A /* ViewController.swift in Sources */,
