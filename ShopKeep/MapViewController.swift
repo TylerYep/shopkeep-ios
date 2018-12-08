@@ -56,6 +56,9 @@ class MapViewController: UIViewController {
     var mainLayer = CALayer()
 
     override func viewDidAppear(_ animated: Bool) {
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpButtonAction))
+        
         completeItemList = ["eggs", "corn", "corn on the cob", "cheese", "brocolli", "lemons", "carrot", "carrots", "pizza", "burger", "burgers", "quesadillas", "quesadilla", "icecream", "ice cream", "chicken", "fish", "steak", "beef", "pasta", "bread"]
         btnArray = [eggsBtn, cornBtn, cheeseBtn, brocolliBtn, lemonBtn, carrotBtn, pizzaBtn, burgerBtn, quesadillaBtn, iceCreamBtn, chickenBtn, fishBtn, steakBtn, pastaBtn, breadBtn]
         //groceryList = ["eggs", "corn", "lemon", "quesadilla"]
@@ -66,6 +69,11 @@ class MapViewController: UIViewController {
 
 
     }
+    
+    @objc func helpButtonAction() {
+        self.performSegue(withIdentifier: "ToHelpViewSegue", sender: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         map = UIImage(named: "base_cvs_map")
