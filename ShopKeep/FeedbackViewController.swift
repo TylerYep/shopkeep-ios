@@ -27,6 +27,9 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
         feedbackTextView.returnKeyType = .done
         feedbackTextView.delegate = self
         
+        feedbackTextView.text = "Any additional feedback for Ellen?"
+        feedbackTextView.textColor = UIColor.lightGray
+        
     }
   
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -34,5 +37,19 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
             textView.resignFirstResponder()
         }
         return true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Any additional feedback for Ellen?"
+            textView.textColor = UIColor.lightGray
+        }
     }
 }
