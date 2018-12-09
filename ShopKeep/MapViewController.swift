@@ -58,6 +58,7 @@ class MapViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpButtonAction))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonAction))
         
         completeItemList = ["eggs", "corn", "corn on the cob", "cheese", "brocolli", "lemons", "carrot", "carrots", "pizza", "burger", "burgers", "quesadillas", "quesadilla", "icecream", "ice cream", "chicken", "fish", "steak", "beef", "pasta", "bread"]
         btnArray = [eggsBtn, cornBtn, cheeseBtn, brocolliBtn, lemonBtn, carrotBtn, pizzaBtn, burgerBtn, quesadillaBtn, iceCreamBtn, chickenBtn, fishBtn, steakBtn, pastaBtn, breadBtn]
@@ -72,6 +73,10 @@ class MapViewController: UIViewController {
     
     @objc func helpButtonAction() {
         self.performSegue(withIdentifier: "ToHelpViewSegue", sender: nil)
+    }
+    
+    @objc func backButtonAction() {
+        self.performSegue(withIdentifier: "ToListViewSegue", sender: nil)
     }
     
     override func viewDidLoad() {
