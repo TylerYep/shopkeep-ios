@@ -79,9 +79,7 @@ class ListViewController: UIViewController,
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-
         var input = textField.text!
-        print("textfield text is \(textField.text)")
         let indexPath = IndexPath(row: textField.tag, section: 1)
         let cell = itemTableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! ItemTableViewCell
         input = input.lowercased().trimmingCharacters(in: .whitespaces)

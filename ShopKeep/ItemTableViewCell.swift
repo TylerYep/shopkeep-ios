@@ -32,6 +32,12 @@ public class ItemTableViewCell: UITableViewCell {
         stockLabel.text = stockString
         itemTextField.autocapitalizationType = .words
         itemTextField.returnKeyType = .done
+        
+        if stockString == "Out of Stock" {
+            stockLabel.textColor = UIColor.red
+        } else if stockString == "Unrecognized" {
+            stockLabel.textColor = UIColor.blue
+        }
     }
 
 
